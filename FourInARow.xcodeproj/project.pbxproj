@@ -12,7 +12,20 @@
 		3E702F532124C85B00A40939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E702F512124C85B00A40939 /* Main.storyboard */; };
 		3E702F552124C85D00A40939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E702F542124C85D00A40939 /* Assets.xcassets */; };
 		3E702F582124C85D00A40939 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E702F562124C85D00A40939 /* LaunchScreen.storyboard */; };
+		3E702F602124CCAF00A40939 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F5F2124CCAF00A40939 /* GameEngine.swift */; };
+		3E702F6A2127D71A00A40939 /* FourInARowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F692127D71A00A40939 /* FourInARowTests.swift */; };
+		3E702F722127D75100A40939 /* GameEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F712127D75100A40939 /* GameEngineTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E702F6C2127D71A00A40939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E702F422124C85B00A40939 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E702F492124C85B00A40939;
+			remoteInfo = FourInARow;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3E702F4A2124C85B00A40939 /* FourInARow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInARow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +35,22 @@
 		3E702F542124C85D00A40939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E702F572124C85D00A40939 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E702F592124C85D00A40939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E702F5F2124CCAF00A40939 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		3E702F672127D71A00A40939 /* FourInARowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FourInARowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E702F692127D71A00A40939 /* FourInARowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInARowTests.swift; sourceTree = "<group>"; };
+		3E702F6B2127D71A00A40939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E702F712127D75100A40939 /* GameEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameEngineTests.swift; path = FourInARowTests/GameEngineTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3E702F472124C85B00A40939 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E702F642127D71A00A40939 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				3E702F4C2124C85B00A40939 /* FourInARow */,
+				3E702F682127D71A00A40939 /* FourInARowTests */,
 				3E702F4B2124C85B00A40939 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				3E702F4A2124C85B00A40939 /* FourInARow.app */,
+				3E702F672127D71A00A40939 /* FourInARowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,8 +87,19 @@
 				3E702F542124C85D00A40939 /* Assets.xcassets */,
 				3E702F562124C85D00A40939 /* LaunchScreen.storyboard */,
 				3E702F592124C85D00A40939 /* Info.plist */,
+				3E702F5F2124CCAF00A40939 /* GameEngine.swift */,
 			);
 			path = FourInARow;
+			sourceTree = "<group>";
+		};
+		3E702F682127D71A00A40939 /* FourInARowTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E702F692127D71A00A40939 /* FourInARowTests.swift */,
+				3E702F712127D75100A40939 /* GameEngineTests.swift */,
+				3E702F6B2127D71A00A40939 /* Info.plist */,
+			);
+			path = FourInARowTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +122,24 @@
 			productReference = 3E702F4A2124C85B00A40939 /* FourInARow.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3E702F662127D71A00A40939 /* FourInARowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E702F6E2127D71A00A40939 /* Build configuration list for PBXNativeTarget "FourInARowTests" */;
+			buildPhases = (
+				3E702F632127D71A00A40939 /* Sources */,
+				3E702F642127D71A00A40939 /* Frameworks */,
+				3E702F652127D71A00A40939 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E702F6D2127D71A00A40939 /* PBXTargetDependency */,
+			);
+			name = FourInARowTests;
+			productName = FourInARowTests;
+			productReference = 3E702F672127D71A00A40939 /* FourInARowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -96,6 +152,10 @@
 				TargetAttributes = {
 					3E702F492124C85B00A40939 = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					3E702F662127D71A00A40939 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 3E702F492124C85B00A40939;
 					};
 				};
 			};
@@ -113,6 +173,7 @@
 			projectRoot = "";
 			targets = (
 				3E702F492124C85B00A40939 /* FourInARow */,
+				3E702F662127D71A00A40939 /* FourInARowTests */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +189,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3E702F652127D71A00A40939 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -136,11 +204,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E702F502124C85B00A40939 /* ViewController.swift in Sources */,
+				3E702F602124CCAF00A40939 /* GameEngine.swift in Sources */,
 				3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3E702F632127D71A00A40939 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E702F6A2127D71A00A40939 /* FourInARowTests.swift in Sources */,
+				3E702F722127D75100A40939 /* GameEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E702F6D2127D71A00A40939 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E702F492124C85B00A40939 /* FourInARow */;
+			targetProxy = 3E702F6C2127D71A00A40939 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3E702F512124C85B00A40939 /* Main.storyboard */ = {
@@ -312,6 +398,46 @@
 			};
 			name = Release;
 		};
+		3E702F6F2127D71A00A40939 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KY9W9NLJDU;
+				INFOPLIST_FILE = FourInARowTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.4mfd.project.practice.FourInARowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FourInARow.app/FourInARow";
+			};
+			name = Debug;
+		};
+		3E702F702127D71A00A40939 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KY9W9NLJDU;
+				INFOPLIST_FILE = FourInARowTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.4mfd.project.practice.FourInARowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FourInARow.app/FourInARow";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +455,15 @@
 			buildConfigurations = (
 				3E702F5D2124C85D00A40939 /* Debug */,
 				3E702F5E2124C85D00A40939 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E702F6E2127D71A00A40939 /* Build configuration list for PBXNativeTarget "FourInARowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E702F6F2127D71A00A40939 /* Debug */,
+				3E702F702127D71A00A40939 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
