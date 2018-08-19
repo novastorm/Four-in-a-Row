@@ -12,9 +12,15 @@ import XCTest
 
 class GameEngineTests: XCTestCase {
     
+    var playerList: [Player]!
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        playerList = [
+            Player(id: 0, chipColor: .red),
+            Player(id: 1, chipColor: .yellow)
+        ]
     }
     
     override func tearDown() {
@@ -22,47 +28,84 @@ class GameEngineTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testPlaceGamePiece() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let gameEngine = GameEngine()
-        let player1 = Player(id: 0, chipColor: .red)
-        let player2 = Player(id: 1, chipColor: .yellow)
+        var targetGameBoard = Array(
+            repeating: Array(
+                repeating: GameBoardSlot(player: nil),
+                count: 7),
+            count: 6)
         
+        let playerList = [
+            Player(id: 0, chipColor: .red),
+            Player(id: 1, chipColor: .yellow)
+        ]
+        
+        var player: Player
         var play: FourInARowPlay
-        play = FourInARowPlay(player: player1, column: 3)
-        let _ = gameEngine.placePlay(play)
-        play = FourInARowPlay(player: player2, column: 3)
-        let _ = gameEngine.placePlay(play)
-        play = FourInARowPlay(player: player1, column: 3)
-        let _ = gameEngine.placePlay(play)
-        play = FourInARowPlay(player: player2, column: 3)
-        let _ = gameEngine.placePlay(play)
-        play = FourInARowPlay(player: player1, column: 3)
-        let _ = gameEngine.placePlay(play)
-        play = FourInARowPlay(player: player2, column: 3)
-        let _ = gameEngine.placePlay(play)
-        play = FourInARowPlay(player: player1, column: 3)
-        let position = gameEngine.placePlay(play)
+        var position: PlayPosition?
+        
+        // Verify initial gameboard state
+        XCTAssert(gameEngine.gameBoard == targetGameBoard, "game board does not match target")
+        
+        let testColumn = 3
+        for i in 0 ... 5 {
+            let playerIndex = i % 2
+            player = playerList[playerIndex]
+            play = FourInARowPlay(player: player, column: testColumn)
+            position = gameEngine.placePlay(play)
+            XCTAssertNotNil(position, "position should contain a value")
+            if let position = position {
+                let targetPosition = (x: i, y: testColumn)
+                XCTAssert(position == targetPosition, "position should be at: \(targetPosition)")
+                targetGameBoard[targetPosition.x][targetPosition.y].player = player
+                XCTAssert(
+                    gameEngine.gameBoard == targetGameBoard,
+                    "game board does not match target\ntarget:\n\(getGameboardDescription(targetGameBoard))\nactual:\n\(getGameboardDescription(gameEngine.gameBoard))\n"
+                )
+            }
+        }
+
+        player = playerList[0]
+        play = FourInARowPlay(player: player, column: 3)
+        position = gameEngine.placePlay(play)
+        XCTAssertNil(position, "Play should have yielded a nil position")
+        
+        play = FourInARowPlay(player: player, column: 4)
+        position = gameEngine.placePlay(play)
+        XCTAssertNotNil(position, "position should contain a value")
+        if let position = position {
+            let targetPosition = (x: 0, y: 4)
+            XCTAssert(position == targetPosition, "position should be at: \(targetPosition)")
+            targetGameBoard[targetPosition.x][targetPosition.y].player = player
+            XCTAssert(
+                gameEngine.gameBoard == targetGameBoard,
+                "game board does not match target\ntarget:\n\(getGameboardDescription(targetGameBoard))\nactual:\n\(getGameboardDescription(gameEngine.gameBoard))\n"
+            )
+        }
 
     }
     
-    func printGameboard(_ gameBoard: GameBoard) {
+    func getGameboardDescription(_ gameBoard: GameBoard) -> String {
+        var result = ""
         for r in stride(from: 5, through: 0, by: -1) {
             for c in 0 ... 6 {
                 var chip: String
-                switch gameBoard[r][c].player?.id {
-                case 0:
+                switch gameBoard[r][c].player {
+                case playerList[0]:
                     chip = "X"
-                case 1:
+                case playerList[1]:
                     chip = "O"
                 default:
                     chip = " "
                 }
-                print("[\(chip)]", terminator:"")
+                result += "[\(chip)]"
             }
-            print()
+            result += "\n"
         }
+        return result
     }
     
     func testPerformanceExample() {
