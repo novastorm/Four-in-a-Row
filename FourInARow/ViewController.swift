@@ -23,9 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var player2Input: UITextField!
     @IBOutlet weak var player2PlayButton: UIButton!
     
-    
     // MARK:- View Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

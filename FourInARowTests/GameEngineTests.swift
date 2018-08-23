@@ -38,24 +38,20 @@ class GameEngineTests: XCTestCase {
                 count: 7),
             count: 6)
         
-        let playerList = [
-            Player(id: 0, chipColor: .red),
-            Player(id: 1, chipColor: .yellow)
-        ]
-        
         var player: Player
-        var play: FourInARowPlay
         var position: PlayPosition?
         
         // Verify initial gameboard state
         XCTAssert(gameEngine.gameBoard == targetGameBoard, "game board does not match target")
         
-        let testColumn = 3
+        var testColumn: Int
+        
+        testColumn = 3
         for i in 0 ... 5 {
             let playerIndex = i % 2
             player = playerList[playerIndex]
-            play = FourInARowPlay(player: player, column: testColumn)
-            position = gameEngine.placePlay(play)
+//            play = FourInARowPlay(player: player, column: testColumn)
+            position = gameEngine.placePlay(for: player, at: testColumn)
             XCTAssertNotNil(position, "position should contain a value")
             if let position = position {
                 let targetPosition = (x: i, y: testColumn)
@@ -69,12 +65,11 @@ class GameEngineTests: XCTestCase {
         }
 
         player = playerList[0]
-        play = FourInARowPlay(player: player, column: 3)
-        position = gameEngine.placePlay(play)
+        position = gameEngine.placePlay(for: player, at: testColumn)
         XCTAssertNil(position, "Play should have yielded a nil position")
         
-        play = FourInARowPlay(player: player, column: 4)
-        position = gameEngine.placePlay(play)
+        testColumn = 4
+        position = gameEngine.placePlay(for: player, at: testColumn)
         XCTAssertNotNil(position, "position should contain a value")
         if let position = position {
             let targetPosition = (x: 0, y: 4)
@@ -85,8 +80,15 @@ class GameEngineTests: XCTestCase {
                 "game board does not match target\ntarget:\n\(getGameboardDescription(targetGameBoard))\nactual:\n\(getGameboardDescription(gameEngine.gameBoard))\n"
             )
         }
-
     }
+    
+//    func testWinConditions() {
+//        let gameEngine = GameEngine()
+//        var player: Player
+//        var play: FourInARowPlay
+//        var position: PlayPosition?
+//
+//    }
     
     func getGameboardDescription(_ gameBoard: GameBoard) -> String {
         var result = ""

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="landscape">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,67 +16,29 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FourInARow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IFy-QO-520">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awX-sW-hDt">
-                                        <rect key="frame" x="0.0" y="0.0" width="329.5" height="375"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPg-Yo-K3J">
-                                        <rect key="frame" x="337.5" y="0.0" width="329.5" height="375"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jtW-Bz-N4D">
-                                                <rect key="frame" x="20" y="40" width="289.5" height="30"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="or5-vE-QaL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="96.5" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="6" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ral-cr-9ST">
-                                                        <rect key="frame" x="96.5" y="0.0" width="96.5" height="30"/>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-Pp-3oM">
-                                                        <rect key="frame" x="193" y="0.0" width="96.5" height="30"/>
-                                                        <state key="normal" title="Play"/>
-                                                        <connections>
-                                                            <action selector="submitPlayer1Play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZrX-Uf-dwv"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="jtW-Bz-N4D" firstAttribute="top" secondItem="tPg-Yo-K3J" secondAttribute="top" constant="40" id="9pB-J5-eGl"/>
-                                            <constraint firstItem="jtW-Bz-N4D" firstAttribute="leading" secondItem="tPg-Yo-K3J" secondAttribute="leading" constant="20" id="htZ-I6-kuA"/>
-                                            <constraint firstAttribute="trailing" secondItem="jtW-Bz-N4D" secondAttribute="trailing" constant="20" id="lS7-gE-7u6"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENY-z3-beK" customClass="GameBoardView" customModule="FourInARow" customModuleProvider="target">
+                                <rect key="frame" x="16" y="220" width="343" height="343"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ENY-z3-beK" secondAttribute="height" multiplier="1:1" id="AYD-Pg-WR2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IFy-QO-520" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2eQ-LW-eda"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IFy-QO-520" secondAttribute="bottom" id="B4T-bc-24k"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IFy-QO-520" secondAttribute="trailing" id="Vdi-ct-cbb"/>
-                            <constraint firstItem="IFy-QO-520" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rqB-yB-dtR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ENY-z3-beK" secondAttribute="trailing" constant="16" id="16B-OH-IZI"/>
+                            <constraint firstItem="ENY-z3-beK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sDU-CP-dbY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ENY-z3-beK" secondAttribute="bottom" constant="104" id="tHV-bK-BY8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141.67916041979012" y="133.59999999999999"/>
+            <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

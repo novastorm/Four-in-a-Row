@@ -17,11 +17,11 @@ struct Player: Equatable {
     var chipColor: ChipColorType
 }
 
-struct FourInARowPlay {
-    var player: Player
-    var column: Int
+enum PlayerPosition: Int {
+    case one=0, two=1
 }
 
+typealias FourInARowPlay = Int
 typealias PlayPosition = Vector
 
 class Vector: Equatable {
@@ -129,10 +129,11 @@ func == (lhs: GameBoard, rhs: GameBoard) -> Bool {
 
 class GameEngine {
     
-    let rowMax = 6
-    let colMax = 7
+    let xMax = 7
+    let yMax = 6
     
     var gameBoard: GameBoard
+    var playList: [Player?]
     
     var currentPlayerInt: Player.IdType!
     
@@ -140,57 +141,50 @@ class GameEngine {
         gameBoard = Array(
             repeating: Array(
                 repeating: GameBoardSlot(player: nil),
-                count: colMax),
-            count: rowMax)
+                count: xMax),
+            count: yMax)
+        playList = Array<Player?>(
+            repeating: nil,
+            count: 2)
+    }
+    
+    func configurePlayer(_ player: Player?, at position: PlayerPosition) {
+        playList[position.rawValue] = player
     }
     
     func resetGameBoard() {
-        for i in 0 ..< rowMax {
-            for j in 0 ..< colMax {
+        for i in 0 ..< yMax {
+            for j in 0 ..< yMax {
                 gameBoard[i][j].player = nil
             }
         }
     }
     
-    func placeGamePiece(_ play: FourInARowPlay) {
-        // check for legal move
-        guard let position = placePlay(play) else {
-            // notify if not legal move
-            print("Move not legal")
-            return
-        }
+    func canPlay(_ col: Int) -> Bool {
         
-        if didPlayerWin(with: position) {
-            // send win notification
-        }
-        // send notification of updated gameboard
-    }
-    
-    func canPlay(_ play: FourInARowPlay) -> Bool {
-        let playColumn = play.column
+        let x = col
         
-        if (playColumn >= 0)
-        && (playColumn < colMax)
-        && (gameBoard[playColumn][rowMax].player == nil) {
+        if (x >= 0)
+        && (x < xMax)
+        && (gameBoard[x][yMax].player == nil) {
             return true
         }
         
         return false
     }
     
-    func placePlay(_ play: FourInARowPlay) -> PlayPosition? {
+    func placePlay(for player: Player, at col: Int) -> PlayPosition? {
         
-        guard canPlay(play) else {
+        let x = col
+        guard canPlay(col) else {
             return nil
         }
         
-        let col = play.column
-        
-        for row in 0 ..< rowMax {
-            if gameBoard[row][col].player == nil {
-                gameBoard[row][col].player = play.player
+        for y in 0 ..< yMax {
+            if gameBoard[y][x].player == nil {
+                gameBoard[y][x].player = player
                 
-                return PlayPosition(row, col)
+                return PlayPosition(y, x)
             }
         }
         
@@ -203,8 +197,7 @@ class GameEngine {
         // check for vertical wins '|'
         if position.y > 3 {
             for i in 1 ... 3 {
-//                testPosition =
-//                if
+                print(position + Direction.s * i)
             }
         }
         // check for horizontal wins '-'
