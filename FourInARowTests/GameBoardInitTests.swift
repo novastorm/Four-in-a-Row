@@ -33,11 +33,32 @@ class GameBoardInitTests: XCTestCase {
             count: numRows
         )
         
-        let gameBoard = GameBoard()
+        let gameBoard = FourInARowGameBoard()
         
         XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board is not empty.")
     }
     
+    func test_gameBoard_initWithBoard() {
+        let numRows = 6
+        let numCols = 7
+        
+        var targetGameBoard = Array(
+            repeating: Array(
+                repeating: GameBoardSlot.none,
+                count: numCols),
+            count: numRows
+        )
+        
+        targetGameBoard[0][4] = .one
+        
+        guard let gameBoard = FourInARowGameBoard(board: targetGameBoard) else {
+            assertionFailure("Game Board should not be nil")
+            return
+        }
+        
+        XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board does not match target.")
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

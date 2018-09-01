@@ -25,10 +25,9 @@ enum GameBoardSlot {
  0
  0 1 2 3 4 5 6 (cols: X)
  
- 
  */
 
-class GameBoard {
+class FourInARowGameBoard {
     let numberOfRows = 6
     let numberOfColumns = 7
     var board: [[GameBoardSlot]]
@@ -59,18 +58,11 @@ class GameBoard {
         }
     }
     
-    
-}
-
-extension GameBoard {
-    static func == (lhs: GameBoard, rhs: GameBoard) -> Bool {
-        for i in 0 ..< lhs.board.count {
-            for j in 0 ..< lhs.board[i].count {
-                if lhs.board[i][j] != rhs.board[i][j] {
-                    return false
-                }
+    func reset() {
+        for r in 0 ..< board.count {
+            for c in 0 ..< board[r].count {
+                board[r][c] = .none
             }
         }
-        return true
     }
 }

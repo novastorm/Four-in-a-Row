@@ -8,6 +8,8 @@
 
 import XCTest
 
+@testable import FourInARow
+
 class GameBoardTests: XCTestCase {
     
     override func setUp() {
@@ -20,11 +22,30 @@ class GameBoardTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_gameBoard_initWithBoard() {
+        let numRows = 6
+        let numCols = 7
+        
+        var targetGameBoard = Array(
+            repeating: Array(
+                repeating: GameBoardSlot.none,
+                count: numCols),
+            count: numRows
+        )
+        
+        targetGameBoard[0][4] = .one
+        
+        guard let gameBoard = FourInARowGameBoard(board: targetGameBoard) else {
+            assertionFailure("Game Board should not be nil")
+            return
+        }
+
+        targetGameBoard[0][4] = .none
+        gameBoard.reset()
+
+        XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board does not match target.")
     }
-    
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
