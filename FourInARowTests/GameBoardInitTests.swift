@@ -8,6 +8,8 @@
 
 import XCTest
 
+@testable import FourInARow
+
 class GameBoardInitTests: XCTestCase {
     
     override func setUp() {
@@ -21,8 +23,7 @@ class GameBoardInitTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        var gameBoard = GameBoard
     }
     
     func testPerformanceExample() {

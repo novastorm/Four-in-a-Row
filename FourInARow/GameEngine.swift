@@ -85,46 +85,72 @@ class Direction: Vector {
     static let nw   = Direction(-1, -1)
 }
 
-struct GameBoardSlot: Equatable {
-    var player: Player?
-    
-    static func == (lhs: GameBoardSlot, rhs: GameBoardSlot) -> Bool {
-        if lhs.player == nil && rhs.player == nil {
-            return true
-        }
-        if lhs.player == nil || rhs.player == nil {
-            return false
-        }
-        return lhs.player! == rhs.player!
-    }
+enum GameBoardSlot {
+    case none, one, two
 }
 
 /**
  
  Game board coordinates
  
- Y
+ (rows: Y)
  5
  4
  3
  2
  1
  0
-  0 1 2 3 4 5 6 X
+ 0 1 2 3 4 5 6 (cols: X)
  
  
  */
-typealias GameBoard = [[GameBoardSlot]]
+//typealias GameBoard = [[GameBoardSlot]]
 
-func == (lhs: GameBoard, rhs: GameBoard) -> Bool {
-    for i in 0 ..< lhs.count {
-        for j in 0 ..< lhs[i].count {
-            if lhs[i][j] != rhs[i][j] {
-                return false
+class GameBoard {
+    let numberOfRows = 6
+    let numberOfColumns = 7
+    var board: [[GameBoardSlot]]
+    
+    init() {
+        board = Array(
+        repeating: Array(
+            repeating: GameBoardSlot.none,
+            count: numberOfColumns),
+        count: numberOfRows)
+    }
+    
+    init?(board: [[GameBoardSlot]]) {
+        guard board.count == numberOfRows else {
+            return nil
+        }
+        
+        self.board = Array<[GameBoardSlot]>(repeating: [], count: numberOfRows)
+        
+        for (r, row) in board.enumerated() {
+            guard row.count == numberOfColumns else {
+                return nil
+            }
+            self.board[r] = Array(repeating: GameBoardSlot.none, count: numberOfColumns)
+            for (c, element) in row.enumerated() {
+                self.board[r][c] = element
             }
         }
     }
-    return true
+    
+    
+}
+
+extension GameBoard {
+    static func == (lhs: GameBoard, rhs: GameBoard) -> Bool {
+        for i in 0 ..< lhs.board.count {
+            for j in 0 ..< lhs.board[i].count {
+                if lhs.board[i][j] != rhs.board[i][j] {
+                    return false
+                }
+            }
+        }
+        return true
+    }
 }
 
 class GameEngine {
