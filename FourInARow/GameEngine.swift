@@ -22,8 +22,6 @@ enum PlayerPosition: Int {
 }
 
 typealias FourInARowPlay = Int
-typealias PlayPosition = Vector
-
 
 
 //class GameEngine {

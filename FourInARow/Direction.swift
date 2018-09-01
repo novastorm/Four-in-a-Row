@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Direction: Vector {
+class Direction: Vector2D {
     static let none = Direction( 0,  0)
     
     static let n    = Direction( 0, -1)

@@ -11,7 +11,7 @@ import UIKit
 class GameBoardView: UIView {
     
     let spacing = 2
-    var gameBoard = FourInARowGameBoard()
+    var gameBoard = FourInARowGame()
     var gameBoardLayout = [[GameBoardSlotView]]()
     var slotSize: Int!
 

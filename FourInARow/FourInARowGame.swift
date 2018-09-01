@@ -12,6 +12,9 @@ enum GameBoardSlot {
     case none, one, two
 }
 
+typealias PlayPosition = Vector2D
+typealias FourInARowGameBoard = [[GameBoardSlot]]
+
 /**
  
  Game board coordinates
@@ -27,10 +30,10 @@ enum GameBoardSlot {
  
  */
 
-class FourInARowGameBoard {
+class FourInARowGame {
     let numberOfRows = 6
     let numberOfColumns = 7
-    var board: [[GameBoardSlot]]
+    var board: FourInARowGameBoard
     
     init() {
         board = Array(
@@ -40,7 +43,7 @@ class FourInARowGameBoard {
             count: numberOfRows)
     }
     
-    init?(board: [[GameBoardSlot]]) {
+    init?(board: FourInARowGameBoard) {
         guard board.count == numberOfRows else {
             return nil
         }
@@ -64,5 +67,30 @@ class FourInARowGameBoard {
                 board[r][c] = .none
             }
         }
+    }
+    
+    func playPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
+        guard canPlay(at: column) else {
+            return nil
+        }
+        
+        for row in 0 ..< numberOfRows {
+            if board[row][column] == .none {
+                board[row][column] = player
+                
+                return PlayPosition(row, column)
+            }
+        }
+        
+        return nil
+    }
+    
+    func canPlay(at column: Int) -> Bool {
+        if (column >= 0)
+        && (column < numberOfColumns)
+            && (board[numberOfRows-1][column] == .none) {
+            return true
+        }
+        return false
     }
 }

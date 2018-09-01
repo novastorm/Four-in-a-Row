@@ -33,7 +33,7 @@ class GameBoardInitTests: XCTestCase {
             count: numRows
         )
         
-        let gameBoard = FourInARowGameBoard()
+        let gameBoard = FourInARowGame()
         
         XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board is not empty.")
     }
@@ -51,7 +51,7 @@ class GameBoardInitTests: XCTestCase {
         
         targetGameBoard[0][4] = .one
         
-        guard let gameBoard = FourInARowGameBoard(board: targetGameBoard) else {
+        guard let gameBoard = FourInARowGame(board: targetGameBoard) else {
             assertionFailure("Game Board should not be nil")
             return
         }
