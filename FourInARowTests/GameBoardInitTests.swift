@@ -22,8 +22,20 @@ class GameBoardInitTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        var gameBoard = GameBoard
+    func test_gameBoard_init() {
+        let numRows = 6
+        let numCols = 7
+        
+        let targetGameBoard = Array(
+            repeating: Array(
+                repeating: GameBoardSlot.none,
+                count: numCols),
+            count: numRows
+        )
+        
+        let gameBoard = GameBoard()
+        
+        XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board is not empty.")
     }
     
     func testPerformanceExample() {
