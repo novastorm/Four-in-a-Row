@@ -49,7 +49,7 @@ class FourInARowVector2D: Equatable {
     }
     
     static func + (lhs: FourInARowVector2D, rhs: FourInARowVector2D) -> FourInARowVector2D {
-        return FourInARowVector2D(lhs.row + rhs.col, lhs.col + rhs.row)
+        return FourInARowVector2D(lhs.row + rhs.row, lhs.col + rhs.col)
     }
     
     static func + (lhs: FourInARowVector2D, addend: Int) -> FourInARowVector2D {

@@ -34,20 +34,20 @@ class GameBoardTests: XCTestCase {
             count: numRows
         )
         
-        targetGameBoard[0][4] = .one
+        targetGameBoard[0][3] = .one
         
         guard let gameBoard = FourInARowGame(board: targetGameBoard) else {
             assertionFailure("Game Board should not be nil")
             return
         }
 
-        targetGameBoard[0][4] = .none
+        targetGameBoard[0][3] = .none
         gameBoard.reset()
 
         XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board does not match target.")
     }
     
-    func test_playPiece() {
+    func test_playPieceVertical() {
         
         var targetGameBoard = Array(
             repeating: Array(
@@ -68,8 +68,8 @@ class GameBoardTests: XCTestCase {
             return
         }
 
-        let _ = gameBoard.playPiece(for: .one, at: 3)
-        targetGameBoard[1][3] = .one
+        let _ = gameBoard.playPiece(for: .two, at: 3)
+        targetGameBoard[1][3] = .two
 
         guard gameBoard.board == targetGameBoard else {
             XCTFail("Game Board does not match target.")
@@ -88,8 +88,8 @@ class GameBoardTests: XCTestCase {
             return
         }
 
-        let _ = gameBoard.playPiece(for: .one, at: 3)
-        targetGameBoard[3][3] = .one
+        let _ = gameBoard.playPiece(for: .two, at: 3)
+        targetGameBoard[3][3] = .two
         
         guard gameBoard.board == targetGameBoard else {
             XCTFail("Game Board does not match target.")
@@ -108,8 +108,8 @@ class GameBoardTests: XCTestCase {
             return
         }
 
-        let _ = gameBoard.playPiece(for: .one, at: 3)
-        targetGameBoard[5][3] = .one
+        let _ = gameBoard.playPiece(for: .two, at: 3)
+        targetGameBoard[5][3] = .two
         
         guard gameBoard.board == targetGameBoard else {
             XCTFail("Game Board does not match target.")

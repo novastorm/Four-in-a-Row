@@ -86,7 +86,8 @@ class FourInARowGame {
         let col = playPosition.col
 
         print("play position: \((row,col))")
-        print("win: \(isWinningPlay(playPosition))")
+        isGameOver = isWinningPlay(playPosition)
+        print("win: \(isGameOver))")
 
         return playPosition
     }
@@ -108,7 +109,8 @@ class FourInARowGame {
     }
 
     func canPlay(at column: Int) -> Bool {
-        if (column >= 0)
+        if !isGameOver
+        && (column >= 0)
         && (column < numberOfColumns)
         && (board[numberOfRows-1][column] == .none) {
             return true
@@ -130,10 +132,14 @@ class FourInARowGame {
                 let r = testPosition.row
                 let c = testPosition.col
                 print("test position: \((r,c))")
-
+                print(player.rawValue, board[r][c].rawValue)
                 if player == board[r][c] {
                     count += 1
                 }
+                else {
+                    break
+                }
+                print("count", count)
             }
         }
         
@@ -143,6 +149,41 @@ class FourInARowGame {
         count = 1
         
         // check for horizontal wins '-'
+        // count west
+        for i in 1 ... min(3,col) {
+            let testPosition = playPosition + (FourInARowDirection.w * -i)
+            let r = testPosition.row
+            let c = testPosition.col
+            print("test position: \((r,c))")
+            print(player.rawValue, board[r][c].rawValue)
+            if player == board[r][c] {
+                count += 1
+            }
+            else {
+                break
+            }
+            print("count", count)
+        }
+        for i in 1 ... min(3,numberOfColumns - col) {
+            let testPosition = playPosition + (FourInARowDirection.e * i)
+            let r = testPosition.row
+            let c = testPosition.col
+            print("test position: \((r,c))")
+            print(player.rawValue, board[r][c].rawValue)
+            if player == board[r][c] {
+                count += 1
+            }
+            else {
+                break
+            }
+            print("count", count)
+        }
+
+        if count == 4 {
+            return true
+        }
+        count = 1
+        // count east
         // check for diagonal top left to bottom right '\'
         // check for diagonal top right to bottom left '/'
         return false
