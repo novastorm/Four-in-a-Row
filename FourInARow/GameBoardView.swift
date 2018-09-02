@@ -47,7 +47,7 @@ class GameBoardView: UIView {
         var slotFrame = CGRect(x: 0, y: 0, width: slotSize, height: slotSize)
         
         for r in 0 ..< rows {
-            for c in 0 ..< cols {
+            for c in 0 ..< cols { 
                 let slotView = gameBoardLayout[r][c]
                 slotFrame.origin.x = CGFloat(c * (slotSize + spacing))
                 slotFrame.origin.y = CGFloat(((rows - 1) - r) * (slotSize + spacing))
