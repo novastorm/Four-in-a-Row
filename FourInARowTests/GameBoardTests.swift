@@ -44,7 +44,9 @@ class GameBoardTests: XCTestCase {
         targetGameBoard[0][3] = .none
         gameBoard.reset()
 
-        XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board does not match target.")
+        XCTAssert(
+            gameBoard.board == targetGameBoard,
+            "Initialized Game Board does not match target.")
     }
     
     func test_playPieceVertical() {
@@ -119,6 +121,116 @@ class GameBoardTests: XCTestCase {
         }
 
         let playPosition = gameBoard.playPiece(for: .one, at: 3)
+        XCTAssertNil(playPosition, "playPosition should be nil")
+    }
+    
+    func test_verticalWin() {
+        
+        var targetGameBoard = Array(
+            repeating: Array(
+                repeating: GameBoardSlot.none,
+                count: numCols),
+            count: numRows
+        )
+        
+        let gameBoard = FourInARowGame()
+        
+        let _ = gameBoard.playPiece(for: .one, at: 3)
+        targetGameBoard[0][3] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let _ = gameBoard.playPiece(for: .one, at: 3)
+        targetGameBoard[1][3] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let _ = gameBoard.playPiece(for: .one, at: 3)
+        targetGameBoard[2][3] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let _ = gameBoard.playPiece(for: .one, at: 3)
+        targetGameBoard[3][3] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let playPosition = gameBoard.playPiece(for: .one, at: 3)
+        XCTAssertNil(playPosition, "playPosition should be nil")
+    }
+    
+    func test_horizontalWin() {
+        
+        var targetGameBoard = Array(
+            repeating: Array(
+                repeating: GameBoardSlot.none,
+                count: numCols),
+            count: numRows
+        )
+        
+        let gameBoard = FourInARowGame()
+        
+        let _ = gameBoard.playPiece(for: .one, at: 0)
+        targetGameBoard[0][0] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let _ = gameBoard.playPiece(for: .one, at: 1)
+        targetGameBoard[0][1] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let _ = gameBoard.playPiece(for: .one, at: 3)
+        targetGameBoard[0][3] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let _ = gameBoard.playPiece(for: .one, at: 2)
+        targetGameBoard[0][2] = .one
+        
+        guard gameBoard.board == targetGameBoard else {
+            XCTFail("Game Board does not match target.")
+            print(getGameboardDescription(gameBoard.board))
+            print(getGameboardDescription(targetGameBoard))
+            return
+        }
+        
+        let playPosition = gameBoard.playPiece(for: .one, at: 4)
         XCTAssertNil(playPosition, "playPosition should be nil")
     }
 

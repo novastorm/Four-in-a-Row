@@ -31,12 +31,14 @@ typealias FourInARowGameBoard = [[GameBoardSlot]]
  */
 
 class FourInARowGame {
+    
     let numberOfRows = 6
     let numberOfColumns = 7
     var board: FourInARowGameBoard
     var isGameOver: Bool
     
     init() {
+        
         board = Array(
             repeating: Array(
                 repeating: GameBoardSlot.none,
@@ -46,6 +48,7 @@ class FourInARowGame {
     }
     
     convenience init?(board: FourInARowGameBoard) {
+        
         self.init()
         guard board.count == numberOfRows else {
             return nil
@@ -65,6 +68,7 @@ class FourInARowGame {
     }
     
     func reset() {
+        
         for r in 0 ..< board.count {
             for c in 0 ..< board[r].count {
                 board[r][c] = .none
@@ -73,26 +77,18 @@ class FourInARowGame {
     }
     
     func playPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
-        guard canPlay(at: column) else {
-            return nil
-        }
-        
+
         guard let playPosition = insertPiece(for: player, at: column) else {
-            print("play position: nil")
             return nil
         }
 
-        let row = playPosition.row
-        let col = playPosition.col
-
-        print("play position: \((row,col))")
         isGameOver = isWinningPlay(playPosition)
-        print("win: \(isGameOver))")
 
         return playPosition
     }
     
     func insertPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
+        
         guard canPlay(at: column) else {
             return nil
         }
@@ -109,6 +105,7 @@ class FourInARowGame {
     }
 
     func canPlay(at column: Int) -> Bool {
+    
         if !isGameOver
         && (column >= 0)
         && (column < numberOfColumns)
@@ -119,73 +116,152 @@ class FourInARowGame {
     }
     
     func isWinningPlay(_ playPosition: PlayPosition) -> Bool {
+        
+        return isVerticalWin(playPosition)
+            || isHorizontalWin(playPosition)
+            || isForwardSlashWin(playPosition)
+            || isBackSlashWin(playPosition)
+    }
+    
+    func isVerticalWin(_ playPosition: PlayPosition) -> Bool {
+        
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
         let player = board[row][col]
         
-        // check for vertical win '|'
-        print("check play position: \((row,col))")
         if row >= 3 {
             for i in 1 ... 3 {
                 let testPosition = playPosition + (FourInARowDirection.s * i)
                 let r = testPosition.row
                 let c = testPosition.col
-                print("test position: \((r,c))")
-                print(player.rawValue, board[r][c].rawValue)
+
                 if player == board[r][c] {
                     count += 1
                 }
                 else {
                     break
                 }
-                print("count", count)
             }
         }
         
-        if count == 4 {
-            return true
-        }
-        count = 1
+        return count == 4
+    }
+    
+    func isHorizontalWin(_ playPosition: PlayPosition) -> Bool {
         
-        // check for horizontal wins '-'
-        // count west
-        for i in 1 ... min(3,col) {
-            let testPosition = playPosition + (FourInARowDirection.w * -i)
-            let r = testPosition.row
-            let c = testPosition.col
-            print("test position: \((r,c))")
-            print(player.rawValue, board[r][c].rawValue)
-            if player == board[r][c] {
-                count += 1
-            }
-            else {
-                break
-            }
-            print("count", count)
-        }
-        for i in 1 ... min(3,numberOfColumns - col) {
-            let testPosition = playPosition + (FourInARowDirection.e * i)
-            let r = testPosition.row
-            let c = testPosition.col
-            print("test position: \((r,c))")
-            print(player.rawValue, board[r][c].rawValue)
-            if player == board[r][c] {
-                count += 1
-            }
-            else {
-                break
-            }
-            print("count", count)
-        }
+        var count = 1
+        let row = playPosition.row
+        let col = playPosition.col
+        let player = board[row][col]
 
-        if count == 4 {
-            return true
+        if col > 0 {
+            for i in 1 ... min(3, col) {
+                let testPosition = playPosition + (FourInARowDirection.w * i)
+                let r = testPosition.row
+                let c = testPosition.col
+
+                if player == board[r][c] {
+                    count += 1
+                }
+                else {
+                    break
+                }
+            }
         }
-        count = 1
-        // count east
-        // check for diagonal top left to bottom right '\'
-        // check for diagonal top right to bottom left '/'
-        return false
+        if col < numberOfColumns - 1 {
+            for i in 1 ... min(3, numberOfColumns - col) {
+                let testPosition = playPosition + (FourInARowDirection.e * i)
+                let r = testPosition.row
+                let c = testPosition.col
+
+                if player == board[r][c] {
+                    count += 1
+                }
+                else {
+                    break
+                }
+            }
+        }
+        
+        return count == 4
+    }
+    
+    func isForwardSlashWin(_ playPosition: PlayPosition) -> Bool {
+        
+        var count = 1
+        let row = playPosition.row
+        let col = playPosition.col
+        let player = board[row][col]
+        
+        if (col > 0) && (row > 0) {
+            for i in 1 ... min(3, col, row) {
+                let testPosition = playPosition + (FourInARowDirection.sw * i)
+                let r = testPosition.row
+                let c = testPosition.col
+
+                if player == board[r][c] {
+                    count += 1
+                }
+                else {
+                    break
+                }
+            }
+        }
+        if (col < numberOfColumns - 1) && (row < numberOfRows - 1) {
+            for i in 1 ... min(3, numberOfColumns - col, numberOfRows - row) {
+                let testPosition = playPosition + (FourInARowDirection.ne * i)
+                let r = testPosition.row
+                let c = testPosition.col
+
+                if player == board[r][c] {
+                    count += 1
+                }
+                else {
+                    break
+                }
+            }
+        }
+        
+        return count == 4
+    }
+    
+    func isBackSlashWin(_ playPosition: PlayPosition) -> Bool {
+
+        var count = 1
+        let row = playPosition.row
+        let col = playPosition.col
+        let player = board[row][col]
+        
+        if (col > 0) && (row < numberOfRows - 1) {
+            for i in 1 ... min(3, col, numberOfRows - row) {
+                let testPosition = playPosition + (FourInARowDirection.nw * i)
+                let r = testPosition.row
+                let c = testPosition.col
+
+                if player == board[r][c] {
+                    count += 1
+                }
+                else {
+                    break
+                }
+            }
+        }
+        if (col < numberOfColumns - 1) && (row > 0) {
+            for i in 1 ... min(3, numberOfColumns - col, row) {
+                let testPosition = playPosition + (FourInARowDirection.se * i)
+                let r = testPosition.row
+                let c = testPosition.col
+
+                if player == board[r][c] {
+                    count += 1
+                }
+                else {
+                    break
+                }
+            }
+        }
+        
+        return count == 4
     }
 }

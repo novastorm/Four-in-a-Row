@@ -44,7 +44,6 @@
 		3E702F542124C85D00A40939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E702F572124C85D00A40939 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E702F592124C85D00A40939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E702F5F2124CCAF00A40939 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		3E702F672127D71A00A40939 /* FourInARowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FourInARowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E702F692127D71A00A40939 /* FourInARowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInARowTests.swift; sourceTree = "<group>"; };
 		3E702F6B2127D71A00A40939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +103,6 @@
 				3E3173B3213AE46C00A453DC /* GameBoardSlotView.swift */,
 				3E36BF3E212E86F1005FB15D /* GameBoardInputView.swift */,
 				3EF70E87213AD85C0091AAF1 /* FourInARowGame.swift */,
-				3E702F5F2124CCAF00A40939 /* GameEngine.swift */,
 				3EF70E8B213AD8B70091AAF1 /* FourInARowDirection.swift */,
 				3EF70E89213AD8940091AAF1 /* FourInARowVector2D.swift */,
 				3E702F592124C85D00A40939 /* Info.plist */,
