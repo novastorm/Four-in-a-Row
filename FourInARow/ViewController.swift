@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         let count = gameBoardView.gameBoard.numberOfColumns
         let spacing = gameBoardView.spacing
         let slotSize = (gameBoardView.frame.width - CGFloat(count-1) * spacing) / CGFloat(count)
-//        let newGamePieceFrame = CGRect(x: 0, y: 0, width: slotSize, height: slotSize)
+
         gamePieceView = GamePieceView(color: .red, size: slotSize)
         view.addSubview(gamePieceView)
         gamePieceView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,6 @@ class ViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-//        gamePieceView.frame = newGamePieceFrame
     }
 
     override func didReceiveMemoryWarning() {
