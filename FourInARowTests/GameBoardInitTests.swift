@@ -49,7 +49,7 @@ class GameBoardInitTests: XCTestCase {
             count: numRows
         )
         
-        targetGameBoard[0][4] = .one
+        targetGameBoard[0][3] = .one
         
         guard let gameBoard = FourInARowGame(board: targetGameBoard) else {
             assertionFailure("Game Board should not be nil")
@@ -59,11 +59,11 @@ class GameBoardInitTests: XCTestCase {
         XCTAssert(gameBoard.board == targetGameBoard, "Initialized Game Board does not match target.")
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
     
 }
