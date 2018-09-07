@@ -15,6 +15,28 @@ enum GameBoardSlot: String {
 typealias PlayPosition = FourInARowVector2D
 typealias FourInARowGameBoard = [[GameBoardSlot]]
 
+extension Array where Element == [GameBoardSlot] {
+    var description:String {
+        var result = ""
+        for r in stride(from: 5, through: 0, by: -1) {
+            for c in 0 ... 6 {
+                var chip: String
+                switch self[r][c] {
+                case .one:
+                    chip = "X"
+                case .two:
+                    chip = "O"
+                default:
+                    chip = " "
+                }
+                result += "[\(chip)]"
+            }
+            result += "\n"
+        }
+        return result
+    }
+}
+
 /**
  
  Game board coordinates
@@ -48,7 +70,6 @@ class FourInARowGame {
     }
     
     convenience init?(board: FourInARowGameBoard) {
-        
         self.init()
         guard board.count == numberOfRows else {
             return nil
@@ -68,7 +89,6 @@ class FourInARowGame {
     }
     
     func reset() {
-        
         for r in 0 ..< board.count {
             for c in 0 ..< board[r].count {
                 board[r][c] = .none
@@ -77,18 +97,16 @@ class FourInARowGame {
     }
     
     func playPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
-
         guard let playPosition = insertPiece(for: player, at: column) else {
             return nil
         }
 
-        isGameOver = isWinningPlay(playPosition)
+        isGameOver = isGameOver || isWinningPlay(playPosition)
 
         return playPosition
     }
     
     func insertPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
-        
         guard canPlay(at: column) else {
             return nil
         }
@@ -105,7 +123,6 @@ class FourInARowGame {
     }
 
     func canPlay(at column: Int) -> Bool {
-    
         if !isGameOver
         && (column >= 0)
         && (column < numberOfColumns)
@@ -116,7 +133,6 @@ class FourInARowGame {
     }
     
     func isWinningPlay(_ playPosition: PlayPosition) -> Bool {
-        
         return isVerticalWin(playPosition)
             || isHorizontalWin(playPosition)
             || isForwardSlashWin(playPosition)
@@ -124,7 +140,6 @@ class FourInARowGame {
     }
     
     func isVerticalWin(_ playPosition: PlayPosition) -> Bool {
-        
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
@@ -149,7 +164,6 @@ class FourInARowGame {
     }
     
     func isHorizontalWin(_ playPosition: PlayPosition) -> Bool {
-        
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
@@ -169,8 +183,8 @@ class FourInARowGame {
                 }
             }
         }
-        if col < numberOfColumns - 1 {
-            for i in 1 ... min(3, numberOfColumns - col) {
+        if col < numberOfColumns-1 {
+            for i in 1 ... min(3, (numberOfColumns-1) - col) {
                 let testPosition = playPosition + (FourInARowDirection.e * i)
                 let r = testPosition.row
                 let c = testPosition.col
@@ -188,7 +202,6 @@ class FourInARowGame {
     }
     
     func isForwardSlashWin(_ playPosition: PlayPosition) -> Bool {
-        
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
@@ -208,8 +221,8 @@ class FourInARowGame {
                 }
             }
         }
-        if (col < numberOfColumns - 1) && (row < numberOfRows - 1) {
-            for i in 1 ... min(3, numberOfColumns - col, numberOfRows - row) {
+        if (col < numberOfColumns-1) && (row < numberOfRows-1) {
+            for i in 1 ... min(3, numberOfColumns-1 - col, numberOfRows-1 - row) {
                 let testPosition = playPosition + (FourInARowDirection.ne * i)
                 let r = testPosition.row
                 let c = testPosition.col
@@ -227,14 +240,13 @@ class FourInARowGame {
     }
     
     func isBackSlashWin(_ playPosition: PlayPosition) -> Bool {
-
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
         let player = board[row][col]
         
-        if (col > 0) && (row < numberOfRows - 1) {
-            for i in 1 ... min(3, col, numberOfRows - row) {
+        if (col > 0) && (row < numberOfRows-1) {
+            for i in 1 ... min(3, col, (numberOfRows-1) - row) {
                 let testPosition = playPosition + (FourInARowDirection.nw * i)
                 let r = testPosition.row
                 let c = testPosition.col
@@ -247,8 +259,8 @@ class FourInARowGame {
                 }
             }
         }
-        if (col < numberOfColumns - 1) && (row > 0) {
-            for i in 1 ... min(3, numberOfColumns - col, row) {
+        if (col < numberOfColumns-1) && (row > 0) {
+            for i in 1 ... min(3, (numberOfColumns-1) - col, row) {
                 let testPosition = playPosition + (FourInARowDirection.se * i)
                 let r = testPosition.row
                 let c = testPosition.col

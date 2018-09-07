@@ -10,10 +10,11 @@ import UIKit
 
 class GameBoardView: UIView {
     
-    let spacing = 2
+    let spacing: CGFloat = 2
     var gameBoard = FourInARowGame()
     var gameBoardLayout = [[GameBoardSlotView]]()
-    var slotSize: Int!
+    var slotSize: CGFloat!
+    var gamePieces = [[GamePieceView]]()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -22,6 +23,9 @@ class GameBoardView: UIView {
     }
     
     private func setupView() {
+//        let rows = gameBoard.numberOfRows
+        let cols = gameBoard.numberOfColumns
+
         gameBoardLayout = Array(
             repeating: Array(
                 repeating: GameBoardSlotView(),
@@ -29,7 +33,10 @@ class GameBoardView: UIView {
             ),
             count: gameBoard.numberOfRows
         )
-        
+
+        let count = CGFloat(cols)
+        slotSize = (frame.size.width - CGFloat((count-1) * spacing)) / CGFloat(count)
+
         for r in 0 ..< gameBoard.numberOfRows {
             for c in 0 ..< gameBoard.numberOfColumns {
                 let slotView = GameBoardSlotView()
@@ -43,14 +50,13 @@ class GameBoardView: UIView {
         let rows = gameBoard.numberOfRows
         let cols = gameBoard.numberOfColumns
         
-        slotSize = Int((frame.size.width - CGFloat(cols * spacing)) / CGFloat(cols))
         var slotFrame = CGRect(x: 0, y: 0, width: slotSize, height: slotSize)
         
         for r in 0 ..< rows {
             for c in 0 ..< cols { 
                 let slotView = gameBoardLayout[r][c]
-                slotFrame.origin.x = CGFloat(c * (slotSize + spacing))
-                slotFrame.origin.y = CGFloat(((rows - 1) - r) * (slotSize + spacing))
+                slotFrame.origin.x = CGFloat(c) * (slotSize + spacing)
+                slotFrame.origin.y = (CGFloat(rows - 1) - CGFloat(r)) * (slotSize + spacing)
                 slotView.frame = slotFrame
                 slotView.textLabel.text = "\(c),\(r)"
             }

@@ -1,5 +1,5 @@
 //
-//  GameBoardViewSlot.swift
+//  GamePieceView.swift
 //  FourInARow
 //
 //  Created by Adland Lee on 9/1/18.
@@ -8,28 +8,34 @@
 
 import UIKit
 
-class GameBoardSlotView: UIView {
+class GamePieceView: UIView {
+    
+    var color: UIColor!
     
     lazy var textLabel: UILabel = {
         let textLabel = UILabel()
-        textLabel.text = "r,c"
+        textLabel.text = "R,C"
         textLabel.textAlignment = .center
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         return textLabel
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
+        fatalError("init(frame:) has not been implemented")
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(color: UIColor, size: CGFloat) {
+        self.color = color
+        super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        backgroundColor = color
+        layer.cornerRadius = size/2
     }
     
     private func setupView() {
-        backgroundColor = .lightGray
         addSubview(textLabel)
         setupLayout()
     }
