@@ -8,7 +8,10 @@
 
 import UIKit
 
-class GameBoardSlotView: UIView {
+class GameBoardSlotView: UIControl {
+    
+    var row: Int!
+    var col: Int!
     
     lazy var textLabel: UILabel = {
         let textLabel = UILabel()
@@ -39,5 +42,23 @@ class GameBoardSlotView: UIView {
             textLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             textLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
+    }
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        print("begin", touch, event)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        print("continue", touch, event)
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        print("end", touch, event)
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        print("cancel", event)
     }
 }

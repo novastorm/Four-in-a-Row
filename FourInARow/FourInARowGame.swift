@@ -101,7 +101,7 @@ class FourInARowGame {
             return nil
         }
 
-        isGameOver = isGameOver || isWinningPlay(playPosition)
+        isGameOver = isGameOver || isWin(playPosition)
 
         return playPosition
     }
@@ -132,7 +132,7 @@ class FourInARowGame {
         return false
     }
     
-    func isWinningPlay(_ playPosition: PlayPosition) -> Bool {
+    func isWin(_ playPosition: PlayPosition) -> Bool {
         return isVerticalWin(playPosition)
             || isHorizontalWin(playPosition)
             || isForwardSlashWin(playPosition)

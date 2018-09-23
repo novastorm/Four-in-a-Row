@@ -41,6 +41,8 @@ class GameBoardView: UIView {
             for c in 0 ..< gameBoard.numberOfColumns {
                 let slotView = GameBoardSlotView()
                 gameBoardLayout[r][c] = slotView
+                slotView.row = r
+                slotView.col = c
                 addSubview(slotView)
             }
         }
@@ -58,7 +60,7 @@ class GameBoardView: UIView {
                 slotFrame.origin.x = CGFloat(c) * (slotSize + spacing)
                 slotFrame.origin.y = (CGFloat(rows - 1) - CGFloat(r)) * (slotSize + spacing)
                 slotView.frame = slotFrame
-                slotView.textLabel.text = "\(c),\(r)"
+                slotView.textLabel.text = "\(slotView.row!),\(slotView.col!)"
             }
         }
     }
