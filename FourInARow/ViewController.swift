@@ -11,46 +11,54 @@ import UIKit
 class ViewController: UIViewController {
 
     var gamePieceView: GamePieceView!
-    @IBOutlet weak var gameBoardView: GameBoardView!
+//    @IBOutlet weak var gameBoardView: GameBoardView!
     
     // MARK:- Properties
     
+    weak var currentGameBoardSlot: GameBoardSlotUIControl?
     
+    let normalColor = UIColor.gray
+    let player1Color = UIColor.red
+    let player2Color = UIColor.yellow
+
     // MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let gameBoard = gameBoardView.gameBoard
-        let count = gameBoard.numberOfColumns
-        let spacing = gameBoardView.spacing
-        let slotSize = (gameBoardView.frame.width - CGFloat(count-1) * spacing) / CGFloat(count)
-
-        gamePieceView = GamePieceView(color: .red, size: slotSize)
-        view.addSubview(gamePieceView)
-        gamePieceView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            gamePieceView.widthAnchor.constraint(equalToConstant: slotSize),
-            gamePieceView.heightAnchor.constraint(equalTo: gamePieceView.widthAnchor),
-            gamePieceView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            gamePieceView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 50)
-            ])
+//        let gameBoard = gameBoardView.gameBoard
+//        let count = gameBoard.numberOfColumns
+//        let spacing = gameBoardView.spacing
+//        let slotSize = (gameBoardView.frame.width - CGFloat(count-1) * spacing) / CGFloat(count)
+//
+//        gamePieceView = GamePieceView(color: .red, size: slotSize)
+//        view.addSubview(gamePieceView)
+//        gamePieceView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            gamePieceView.widthAnchor.constraint(equalToConstant: slotSize),
+//            gamePieceView.heightAnchor.constraint(equalTo: gamePieceView.widthAnchor),
+//            gamePieceView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            gamePieceView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 50)
+//            ])
         
         let longPressOnPiece = UILongPressGestureRecognizer(
             target: self,
-            action: #selector(ViewController.handleLongPress(_:)))
-        gamePieceView.addGestureRecognizer(longPressOnPiece)
+            action: #selector(handleLongPress(_:)))
+        longPressOnPiece.minimumPressDuration = 0
+//        longPressOnPiece.delegate = self
+        view.addGestureRecognizer(longPressOnPiece)
         
-        let touchIndicator = TouchIndicatorGestureRecognizer(target: self, action: nil)
-        touchIndicator.delegate = self
-        view.addGestureRecognizer(touchIndicator)
+//        let touchIndicator = TouchIndicatorGestureRecognizer(target: self, action: nil)
+//        touchIndicator.delegate = self
+//        view.addGestureRecognizer(touchIndicator)
     }
 
     override func viewDidLayoutSubviews() {
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        for button in view.allSubviews {
+            guard button is GameBoardSlotUIControl else {
+                continue
+            }
+            button.backgroundColor = normalColor
+        }
     }
 
     
@@ -58,23 +66,31 @@ class ViewController: UIViewController {
     
     @objc
     func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        switch gesture.view {
-        case let piece as GamePieceView:
+        let touchPoint = gesture.location(in: view)
+        let targetView = view.hitTest(touchPoint, with: nil)
+        
             switch gesture.state {
             case .began:
-                grabGamePiece(piece, withGesture: gesture)
+                currentGameBoardSlot = targetView as? GameBoardSlotUIControl
+                currentGameBoardSlot?.backgroundColor = player1Color
             case .changed:
-                moveGamePiece(piece, withGesture: gesture)
+                if targetView is GameBoardSlotUIControl && currentGameBoardSlot == nil {
+                    currentGameBoardSlot = targetView as? GameBoardSlotUIControl
+                    currentGameBoardSlot?.backgroundColor = player1Color
+                }
+                if currentGameBoardSlot != nil && !currentGameBoardSlot!.isEqual(targetView) {
+                    currentGameBoardSlot?.backgroundColor = normalColor
+                    currentGameBoardSlot = nil
+                }
             case .ended, .cancelled:
-                dropGamePiece(piece, withGesture: gesture)
+                if let tag = currentGameBoardSlot?.tag {
+                    print("end tag: \(tag) \(tag/7),\(tag%7)")
+                }
+                currentGameBoardSlot?.backgroundColor = normalColor
+                currentGameBoardSlot = nil
             default:
                 print("gesture state not implemented")
             }
-        case let slot as GameBoardSlotView:
-            print("Slot pressed \(slot.row!), \(slot.col!)")
-        default:
-            break
-        }
     }
     
     

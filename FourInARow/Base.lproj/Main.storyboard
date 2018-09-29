@@ -18,25 +18,310 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENY-z3-beK" customClass="GameBoardView" customModule="FourInARow" customModuleProvider="target">
-                                <rect key="frame" x="16" y="220" width="343" height="343"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="92M-Xp-jIe">
+                                <rect key="frame" x="16" y="353" width="343" height="294"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WsG-hW-avh">
+                                        <rect key="frame" x="0.0" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="35" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bka-pv-5vU" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="28" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1n-j9-2mz" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5I4-yT-8tm" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3r-BD-cbm" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpX-w8-gI3" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzM-T0-Kge" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NdN-rB-0aR">
+                                        <rect key="frame" x="49" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="36" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOz-DV-ZZf" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="29" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPH-Oo-0sT" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZq-AQ-NpT" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEC-R9-hrB" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqF-oX-Vam" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCA-AQ-70r" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pd8-j6-O55">
+                                        <rect key="frame" x="98" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="37" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emO-9a-ths" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zd-KQ-EeX" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rth-Wi-H3c" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSR-mb-2yv" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdV-Hd-ptj" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFd-qM-ws4" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-cf-3Qe">
+                                        <rect key="frame" x="147" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="38" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLf-y0-ZUA" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="31" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1y-TF-Oeg" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zcl-wj-XKz" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wog-hN-kd9" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLp-ny-XHW" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkx-Ft-CEb" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="68N-8C-Y3d">
+                                        <rect key="frame" x="196" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="39" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS7-VY-byn" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="32" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeL-gE-1OF" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPO-Ey-lbE" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbC-pL-TQx" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBO-k9-FZ2" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pV-R9-Uf1" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Vqc-vR-qjm">
+                                        <rect key="frame" x="245" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="40" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L84-Oi-WT3" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="33" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCt-XQ-VhE" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-bo-Tpa" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ZI-q7-Pi7" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaC-ow-a6P" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13o-0C-Ln7" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rYu-xL-ibv">
+                                        <rect key="frame" x="294" y="0.0" width="49" height="294"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="41" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyH-XM-avX" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="34" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEi-xw-Kwz" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="49" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDc-A4-vlo" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="98" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTa-Ap-BaH" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="147" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajz-JM-VgR" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="196" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DM-5G-mSi" customClass="GameBoardSlotUIControl" customModule="FourInARow" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="245" width="49" height="49"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                </accessibility>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ENY-z3-beK" secondAttribute="height" multiplier="1:1" id="AYD-Pg-WR2"/>
-                                    <constraint firstAttribute="width" constant="343" id="bAR-EP-8Yv"/>
+                                    <constraint firstAttribute="width" secondItem="92M-Xp-jIe" secondAttribute="height" multiplier="7:6" id="Mmi-ft-BfG"/>
                                 </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ENY-z3-beK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sl6-c6-don"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ENY-z3-beK" secondAttribute="bottom" constant="104" id="tHV-bK-BY8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="92M-Xp-jIe" secondAttribute="trailing" constant="16" id="Bap-sI-Pu4"/>
+                            <constraint firstItem="92M-Xp-jIe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="InN-i7-W98"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="92M-Xp-jIe" secondAttribute="bottom" constant="20" id="eBz-tq-cu6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="gameBoardView" destination="ENY-z3-beK" id="4BX-Ri-IWu"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
