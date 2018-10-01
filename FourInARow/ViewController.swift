@@ -83,8 +83,8 @@ class ViewController: UIViewController {
                     currentGameBoardSlot = nil
                 }
             case .ended, .cancelled:
-                if let tag = currentGameBoardSlot?.tag {
-                    print("end tag: \(tag) \(tag/7),\(tag%7)")
+                if let colTag = currentGameBoardSlot?.tag, let rowTag = currentGameBoardSlot?.superview!.tag {
+                    print("end tag: \(rowTag), \(colTag)")
                 }
                 currentGameBoardSlot?.backgroundColor = normalColor
                 currentGameBoardSlot = nil

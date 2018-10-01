@@ -12,7 +12,18 @@ import UIKit
 class UIGameBoardView: UIView {
     
     @IBInspectable
-    var spacing: CGFloat = 2
+    var spacing: CGFloat = 2 {
+        didSet {
+            horizontalStack.spacing = spacing
+            for col in horizontalStack.arrangedSubviews {
+                if let col = col as? UIStackView {
+                    col.spacing = spacing
+                }
+                
+            }
+            updateView()
+        }
+    }
     
     @IBInspectable
     var rows: Int = 6
@@ -24,7 +35,7 @@ class UIGameBoardView: UIView {
 //    var gameBoardLayout = [[GameBoardSlotView]]()
     var slotSize: CGFloat!
     var gamePieces = [[GamePieceView]]()
-
+    var horizontalStack: UIStackView!
     
     // MARK: View Life Cycle
     
@@ -39,7 +50,7 @@ class UIGameBoardView: UIView {
     }
     
     override func prepareForInterfaceBuilder() {
-        sharedInit()
+        translatesAutoresizingMaskIntoConstraints = true
     }
     
     func sharedInit() {
@@ -53,24 +64,19 @@ class UIGameBoardView: UIView {
     
     private func setupViews() {
         
-        translatesAutoresizingMaskIntoConstraints = true
-        
-        addConstraints([
-            widthAnchor.constraint(equalTo: heightAnchor, multiplier: 7/6)
-            ])
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalTo: heightAnchor, multiplier: 7/6).isActive = true
 
-        let horizontalStack = UIStackView()
+        horizontalStack = UIStackView(frame: frame)
+        addSubview(horizontalStack)
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.axis = .horizontal
         horizontalStack.distribution = .fillEqually
-        addSubview(horizontalStack)
 
-        addConstraints([
-            horizontalStack.topAnchor.constraint(equalTo: topAnchor),
-            horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor),
-            horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor)
-            ])
+        horizontalStack.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
 
         
         for c in 0 ..< columns {
@@ -80,7 +86,7 @@ class UIGameBoardView: UIView {
             column.axis = .vertical
             column.tag = c
             horizontalStack.addArrangedSubview(column)
-            for r in stride(from: rows-1, through: 0, by: -1) {
+            for r in 0 ..< rows {
                 let slot = UIGameBoardSlot()
                 slot.translatesAutoresizingMaskIntoConstraints = false
                 slot.tag = r
