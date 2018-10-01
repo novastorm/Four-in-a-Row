@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     // MARK:- Properties
     
-    weak var currentGameBoardSlot: GameBoardSlotUIControl?
+    weak var currentGameBoardSlot: UIGameBoardSlot?
     
     let normalColor = UIColor.gray
     let player1Color = UIColor.red
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         for button in view.allSubviews {
-            guard button is GameBoardSlotUIControl else {
+            guard button is UIGameBoardSlot else {
                 continue
             }
             button.backgroundColor = normalColor
@@ -71,11 +71,11 @@ class ViewController: UIViewController {
         
             switch gesture.state {
             case .began:
-                currentGameBoardSlot = targetView as? GameBoardSlotUIControl
+                currentGameBoardSlot = targetView as? UIGameBoardSlot
                 currentGameBoardSlot?.backgroundColor = player1Color
             case .changed:
-                if targetView is GameBoardSlotUIControl && currentGameBoardSlot == nil {
-                    currentGameBoardSlot = targetView as? GameBoardSlotUIControl
+                if targetView is UIGameBoardSlot && currentGameBoardSlot == nil {
+                    currentGameBoardSlot = targetView as? UIGameBoardSlot
                     currentGameBoardSlot?.backgroundColor = player1Color
                 }
                 if currentGameBoardSlot != nil && !currentGameBoardSlot!.isEqual(targetView) {

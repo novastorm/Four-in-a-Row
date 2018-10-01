@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E3173B4213AE46C00A453DC /* GameBoardSlotUIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3173B3213AE46C00A453DC /* GameBoardSlotUIControl.swift */; };
-		3E36BF3D212E7B4E005FB15D /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36BF3C212E7B4E005FB15D /* GameBoardView.swift */; };
+		3E3173B4213AE46C00A453DC /* UIGameBoardSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3173B3213AE46C00A453DC /* UIGameBoardSlot.swift */; };
+		3E36BF3D212E7B4E005FB15D /* UIGameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36BF3C212E7B4E005FB15D /* UIGameBoardView.swift */; };
 		3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F4D2124C85B00A40939 /* AppDelegate.swift */; };
 		3E702F502124C85B00A40939 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F4F2124C85B00A40939 /* ViewController.swift */; };
 		3E702F532124C85B00A40939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E702F512124C85B00A40939 /* Main.storyboard */; };
@@ -19,6 +19,7 @@
 		3E86A25D213C4DB5009E9C14 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86A25C213C4DB5009E9C14 /* UIView+Extensions.swift */; };
 		3E90A9BE215F72570012AC28 /* TypeNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E90A9BD215F72570012AC28 /* TypeNameExtensions.swift */; };
 		3E97CED4215224E800FF898B /* TouchIndicatorGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97CED3215224E800FF898B /* TouchIndicatorGestureRecognizer.swift */; };
+		3ED076772160AFA900014388 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED076762160AFA900014388 /* UIColor+Extensions.swift */; };
 		3EF70E84213AD76C0091AAF1 /* GameBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF70E83213AD76C0091AAF1 /* GameBoardTests.swift */; };
 		3EF70E86213AD79E0091AAF1 /* GameBoardInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF70E85213AD79E0091AAF1 /* GameBoardInitTests.swift */; };
 		3EF70E88213AD85C0091AAF1 /* FourInARowGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF70E87213AD85C0091AAF1 /* FourInARowGame.swift */; };
@@ -37,8 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3E3173B3213AE46C00A453DC /* GameBoardSlotUIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardSlotUIControl.swift; sourceTree = "<group>"; };
-		3E36BF3C212E7B4E005FB15D /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
+		3E3173B3213AE46C00A453DC /* UIGameBoardSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGameBoardSlot.swift; sourceTree = "<group>"; };
+		3E36BF3C212E7B4E005FB15D /* UIGameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGameBoardView.swift; sourceTree = "<group>"; };
 		3E36BF3E212E86F1005FB15D /* GameBoardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardInputView.swift; sourceTree = "<group>"; };
 		3E702F4A2124C85B00A40939 /* FourInARow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInARow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E702F4D2124C85B00A40939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		3E86A25C213C4DB5009E9C14 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		3E90A9BD215F72570012AC28 /* TypeNameExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNameExtensions.swift; sourceTree = "<group>"; };
 		3E97CED3215224E800FF898B /* TouchIndicatorGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchIndicatorGestureRecognizer.swift; sourceTree = "<group>"; };
+		3ED076762160AFA900014388 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		3EF70E83213AD76C0091AAF1 /* GameBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardTests.swift; sourceTree = "<group>"; };
 		3EF70E85213AD79E0091AAF1 /* GameBoardInitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardInitTests.swift; sourceTree = "<group>"; };
 		3EF70E87213AD85C0091AAF1 /* FourInARowGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInARowGame.swift; sourceTree = "<group>"; };
@@ -107,13 +109,14 @@
 				3E702F542124C85D00A40939 /* Assets.xcassets */,
 				3E702F4D2124C85B00A40939 /* AppDelegate.swift */,
 				3E702F4F2124C85B00A40939 /* ViewController.swift */,
-				3E36BF3C212E7B4E005FB15D /* GameBoardView.swift */,
-				3E3173B3213AE46C00A453DC /* GameBoardSlotUIControl.swift */,
+				3E36BF3C212E7B4E005FB15D /* UIGameBoardView.swift */,
+				3E3173B3213AE46C00A453DC /* UIGameBoardSlot.swift */,
 				3E86A25A213BBD4B009E9C14 /* GamePieceView.swift */,
 				3E36BF3E212E86F1005FB15D /* GameBoardInputView.swift */,
 				3EF70E87213AD85C0091AAF1 /* FourInARowGame.swift */,
 				3EF70E8B213AD8B70091AAF1 /* FourInARowDirection.swift */,
 				3EF70E89213AD8940091AAF1 /* FourInARowVector2D.swift */,
+				3ED076762160AFA900014388 /* UIColor+Extensions.swift */,
 				3E86A25C213C4DB5009E9C14 /* UIView+Extensions.swift */,
 				3E90A9BD215F72570012AC28 /* TypeNameExtensions.swift */,
 			);
@@ -241,9 +244,10 @@
 				3E86A25D213C4DB5009E9C14 /* UIView+Extensions.swift in Sources */,
 				3EF70E88213AD85C0091AAF1 /* FourInARowGame.swift in Sources */,
 				3E97CED4215224E800FF898B /* TouchIndicatorGestureRecognizer.swift in Sources */,
-				3E3173B4213AE46C00A453DC /* GameBoardSlotUIControl.swift in Sources */,
+				3ED076772160AFA900014388 /* UIColor+Extensions.swift in Sources */,
+				3E3173B4213AE46C00A453DC /* UIGameBoardSlot.swift in Sources */,
 				3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */,
-				3E36BF3D212E7B4E005FB15D /* GameBoardView.swift in Sources */,
+				3E36BF3D212E7B4E005FB15D /* UIGameBoardView.swift in Sources */,
 				3EF70E8C213AD8B70091AAF1 /* FourInARowDirection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
