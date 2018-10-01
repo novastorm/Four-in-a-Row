@@ -10,8 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var gamePieceView: GamePieceView!
-//    @IBOutlet weak var gameBoardView: GameBoardView!
+    @IBOutlet weak var gameBoardView: UIGameBoardView!
     
     // MARK:- Properties
     
@@ -24,32 +23,12 @@ class ViewController: UIViewController {
     // MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        let gameBoard = gameBoardView.gameBoard
-//        let count = gameBoard.numberOfColumns
-//        let spacing = gameBoardView.spacing
-//        let slotSize = (gameBoardView.frame.width - CGFloat(count-1) * spacing) / CGFloat(count)
-//
-//        gamePieceView = GamePieceView(color: .red, size: slotSize)
-//        view.addSubview(gamePieceView)
-//        gamePieceView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            gamePieceView.widthAnchor.constraint(equalToConstant: slotSize),
-//            gamePieceView.heightAnchor.constraint(equalTo: gamePieceView.widthAnchor),
-//            gamePieceView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            gamePieceView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 50)
-//            ])
         
-        let longPressOnPiece = UILongPressGestureRecognizer(
+        let longPressGestureOnGameboard = UILongPressGestureRecognizer(
             target: self,
             action: #selector(handleLongPress(_:)))
-        longPressOnPiece.minimumPressDuration = 0
-//        longPressOnPiece.delegate = self
-        view.addGestureRecognizer(longPressOnPiece)
-        
-//        let touchIndicator = TouchIndicatorGestureRecognizer(target: self, action: nil)
-//        touchIndicator.delegate = self
-//        view.addGestureRecognizer(touchIndicator)
+        longPressGestureOnGameboard.minimumPressDuration = 0
+        gameBoardView.addGestureRecognizer(longPressGestureOnGameboard)
     }
 
     override func viewDidLayoutSubviews() {
@@ -83,7 +62,7 @@ class ViewController: UIViewController {
                     currentGameBoardSlot = nil
                 }
             case .ended, .cancelled:
-                if let colTag = currentGameBoardSlot?.tag, let rowTag = currentGameBoardSlot?.superview!.tag {
+                if let rowTag = currentGameBoardSlot?.tag, let colTag = currentGameBoardSlot?.superview!.tag {
                     print("end tag: \(rowTag), \(colTag)")
                 }
                 currentGameBoardSlot?.backgroundColor = normalColor
@@ -95,7 +74,24 @@ class ViewController: UIViewController {
     
     
     // MARK: - Helpers
-
+    @objc
+    func handleLongPressOnPiece(_ gesture: UILongPressGestureRecognizer) {
+        switch gesture.view {
+        case let piece as GamePieceView:
+            switch gesture.state {
+            case .began:
+                grabGamePiece(piece, withGesture: gesture)
+            case .changed:
+                moveGamePiece(piece, withGesture: gesture)
+            case .ended, .cancelled:
+                dropGamePiece(piece, withGesture: gesture)
+            default:
+                print("gesture state not implemented")
+            }
+        default:
+            break
+        }
+    }
     func grabGamePiece(_ piece: UIView, withGesture gesture: UIGestureRecognizer) {
         piece.center = view.convert(piece.center, from: piece.superview)
         view.addSubview(piece)
@@ -119,13 +115,8 @@ class ViewController: UIViewController {
         
         piece.center = view.convert(piece.center, to: piece.superview)
     }
-}
-
-extension ViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // we should be specific here because it's easy source of bugs
-        // but in this example we do want that all of the gestures (long press, pan, indicator) to work simultaneously
-        // so it's possible to move the dots with multiple fingers, and open drawer with other finger at the same time
-        return true
+    
+    func grabRow(_ row: UIView, with gesture: UIGestureRecognizer) {
+        
     }
 }
