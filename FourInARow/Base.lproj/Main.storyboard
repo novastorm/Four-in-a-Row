@@ -373,8 +373,8 @@
                         <constraints>
                             <constraint firstItem="LC8-1Q-u4g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NE1-cG-khv"/>
                             <constraint firstItem="LC8-1Q-u4g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X5c-BM-9jW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FkQ-d5-M4o" secondAttribute="trailing" constant="16" id="aSM-jP-OMp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FkQ-d5-M4o" secondAttribute="bottom" constant="20" id="abR-VA-TYt"/>
+                            <constraint firstItem="FkQ-d5-M4o" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="aSM-jP-OMp"/>
+                            <constraint firstItem="FkQ-d5-M4o" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="abR-VA-TYt"/>
                             <constraint firstItem="FkQ-d5-M4o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="n8P-oW-dJN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LC8-1Q-u4g" secondAttribute="trailing" constant="16" id="uur-LW-1BJ"/>
                         </constraints>
