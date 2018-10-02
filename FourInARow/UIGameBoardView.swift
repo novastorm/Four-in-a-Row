@@ -33,8 +33,6 @@ class UIGameBoardView: UIView {
     
     
 //    var gameBoardLayout = [[GameBoardSlotView]]()
-    var slotSize: CGFloat!
-    var gamePieces = [[GamePieceView]]()
     var horizontalStack: UIStackView!
     
     // MARK: View Life Cycle
@@ -69,6 +67,7 @@ class UIGameBoardView: UIView {
 
         horizontalStack = UIStackView(frame: frame)
         addSubview(horizontalStack)
+        
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.axis = .horizontal
         horizontalStack.distribution = .fillEqually
@@ -77,22 +76,33 @@ class UIGameBoardView: UIView {
         horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-
         
         for c in 0 ..< columns {
-            let column = UIStackView()
-            column.translatesAutoresizingMaskIntoConstraints = false
-            column.distribution = .fillEqually
-            column.axis = .vertical
-            column.tag = c
-            horizontalStack.addArrangedSubview(column)
+            let columnView = UIView()
+            horizontalStack.addArrangedSubview(columnView)
+            columnView.translatesAutoresizingMaskIntoConstraints = false
+
+            let columnStack = UIStackView()
+            columnView.addSubview(columnStack)
+            columnStack.translatesAutoresizingMaskIntoConstraints = false
+
+            columnStack.axis = .vertical
+            columnStack.distribution = .fillEqually
+            columnStack.tag = c
+
+            columnStack.topAnchor.constraint(equalTo: columnView.topAnchor).isActive = true
+            columnStack.trailingAnchor.constraint(equalTo: columnView.trailingAnchor).isActive = true
+            columnStack.bottomAnchor.constraint(equalTo: columnView.bottomAnchor).isActive = true
+            columnStack.leadingAnchor.constraint(equalTo: columnView.leadingAnchor).isActive = true
+            
             for r in 0 ..< rows {
                 let slot = UIGameBoardSlot()
                 slot.translatesAutoresizingMaskIntoConstraints = false
+                columnStack.addArrangedSubview(slot)
                 slot.tag = r
                 slot.backgroundColor = .gray
                 slot.setTitle(String(r), for: .normal)
-                column.addArrangedSubview(slot)
+                
             }
         }
     }

@@ -20,7 +20,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LC8-1Q-u4g" customClass="UIGameBoardView" customModule="FourInARow" customModuleProvider="target">
                                 <rect key="frame" x="16" y="353" width="343" height="294"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="spacing">
                                         <real key="value" value="0.0"/>

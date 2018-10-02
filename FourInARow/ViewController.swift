@@ -51,21 +51,25 @@ class ViewController: UIViewController {
             switch gesture.state {
             case .began:
                 currentGameBoardSlot = targetView as? UIGameBoardSlot
-                currentGameBoardSlot?.backgroundColor = player1Color
+//                currentGameBoardSlot?.backgroundColor = player1Color
+                currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
             case .changed:
                 if targetView is UIGameBoardSlot && currentGameBoardSlot == nil {
                     currentGameBoardSlot = targetView as? UIGameBoardSlot
-                    currentGameBoardSlot?.backgroundColor = player1Color
+//                    currentGameBoardSlot?.backgroundColor = player1Color
+                    currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
                 }
                 if currentGameBoardSlot != nil && !currentGameBoardSlot!.isEqual(targetView) {
-                    currentGameBoardSlot?.backgroundColor = normalColor
+//                    currentGameBoardSlot?.backgroundColor = normalColor
+                    currentGameBoardSlot?.superview?.superview?.backgroundColor = .clear
                     currentGameBoardSlot = nil
                 }
             case .ended, .cancelled:
                 if let rowTag = currentGameBoardSlot?.tag, let colTag = currentGameBoardSlot?.superview!.tag {
                     print("end tag: \(rowTag), \(colTag)")
                 }
-                currentGameBoardSlot?.backgroundColor = normalColor
+//                currentGameBoardSlot?.backgroundColor = normalColor
+                currentGameBoardSlot?.superview?.superview?.backgroundColor = .clear
                 currentGameBoardSlot = nil
             default:
                 print("gesture state not implemented")
@@ -92,6 +96,7 @@ class ViewController: UIViewController {
             break
         }
     }
+    
     func grabGamePiece(_ piece: UIView, withGesture gesture: UIGestureRecognizer) {
         piece.center = view.convert(piece.center, from: piece.superview)
         view.addSubview(piece)
@@ -116,7 +121,7 @@ class ViewController: UIViewController {
         piece.center = view.convert(piece.center, to: piece.superview)
     }
     
-    func grabRow(_ row: UIView, with gesture: UIGestureRecognizer) {
+    func grabColumn(_ column: UIView, with gesture: UIGestureRecognizer) {
         
     }
 }
