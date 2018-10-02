@@ -19,17 +19,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LC8-1Q-u4g" customClass="UIGameBoardView" customModule="FourInARow" customModuleProvider="target">
-                                <rect key="frame" x="16" y="353" width="343" height="294"/>
+                                <rect key="frame" x="16" y="313" width="343" height="294"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="spacing">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rows">
+                                        <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LC8-1Q-u4g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NE1-cG-khv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LC8-1Q-u4g" secondAttribute="bottom" constant="20" id="iaT-Rp-edB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LC8-1Q-u4g" secondAttribute="bottom" constant="60" id="iaT-Rp-edB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LC8-1Q-u4g" secondAttribute="trailing" constant="16" id="uur-LW-1BJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

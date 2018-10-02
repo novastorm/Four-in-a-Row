@@ -40,7 +40,7 @@ class UIGameBoardSlot: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let radius: CGFloat = bounds.height / 2.0
+        let radius: CGFloat = min(bounds.width, bounds.height) / 2.0
         layer.cornerRadius = radius
     }
 }

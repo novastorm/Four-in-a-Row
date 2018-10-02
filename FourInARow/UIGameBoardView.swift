@@ -15,8 +15,8 @@ class UIGameBoardView: UIView {
     var spacing: CGFloat = 2 {
         didSet {
             horizontalStack.spacing = spacing
-            for col in horizontalStack.arrangedSubviews {
-                if let col = col as? UIStackView {
+            for view in horizontalStack.arrangedSubviews {
+                if let col = view.subviews[0] as? UIStackView {
                     col.spacing = spacing
                 }
                 
@@ -26,11 +26,19 @@ class UIGameBoardView: UIView {
     }
     
     @IBInspectable
-    var rows: Int = 6
+    var rows: Int = 6 {
+        didSet {
+            setupViews()
+        }
+    }
     
     @IBInspectable
-    var columns: Int = 7
-    
+    var columns: Int = 7 {
+        didSet {
+            setupViews()
+        }
+    }
+
     
 //    var gameBoardLayout = [[GameBoardSlotView]]()
     var horizontalStack: UIStackView!
@@ -62,6 +70,12 @@ class UIGameBoardView: UIView {
     
     private func setupViews() {
         
+        if horizontalStack != nil {
+            for aView in horizontalStack.subviews {
+                aView.removeFromSuperview()
+            }
+        }
+        
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalTo: heightAnchor, multiplier: 7/6).isActive = true
 
@@ -71,6 +85,7 @@ class UIGameBoardView: UIView {
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.axis = .horizontal
         horizontalStack.distribution = .fillEqually
+        horizontalStack.spacing = spacing
 
         horizontalStack.topAnchor.constraint(equalTo: topAnchor).isActive = true
         horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -89,6 +104,7 @@ class UIGameBoardView: UIView {
             columnStack.axis = .vertical
             columnStack.distribution = .fillEqually
             columnStack.tag = c
+            columnStack.spacing = spacing
 
             columnStack.topAnchor.constraint(equalTo: columnView.topAnchor).isActive = true
             columnStack.trailingAnchor.constraint(equalTo: columnView.trailingAnchor).isActive = true
@@ -103,6 +119,21 @@ class UIGameBoardView: UIView {
                 slot.backgroundColor = .gray
             }
         }
+    }
+    
+    func getColumn(for slot: UIGameBoardSlot) -> Int {
+        return slot.superview!.tag
+    }
+    
+    func getPlayPosition(for slot: UIGameBoardSlot) -> (r: Int, c: Int) {
+        let c = slot.tag
+        let r = slot.superview!.tag
+        
+        return (r: r, c: c)
+    }
+    
+    func setColor(for slot: UIGameBoardSlot, with color: UIColor) {
+        slot.backgroundColor = color
     }
     
     override func layoutSubviews() {

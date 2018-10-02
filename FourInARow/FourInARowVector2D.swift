@@ -17,6 +17,11 @@ class FourInARowVector2D: Equatable {
         self.row = row
         self.col = col
     }
+
+    init(_ pos:(Int, Int)) {
+        self.row = pos.0
+        self.col = pos.1
+    }
     
     static func == (lhs: FourInARowVector2D, rhs: FourInARowVector2D) -> Bool {
         return lhs.row == rhs.row

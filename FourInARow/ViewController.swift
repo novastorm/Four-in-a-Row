@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var gameBoardView: UIGameBoardView!
     
+    
     // MARK:- Properties
     
     weak var currentGameBoardSlot: UIGameBoardSlot?
@@ -20,13 +21,16 @@ class ViewController: UIViewController {
     let player1Color = UIColor.red
     let player2Color = UIColor.yellow
 
+    
     // MARK:- View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let longPressGestureOnGameboard = UILongPressGestureRecognizer(
             target: self,
-            action: #selector(handleLongPress(_:)))
+            action: #selector(handleLongPress(_:))
+        )
         longPressGestureOnGameboard.minimumPressDuration = 0
         gameBoardView.addGestureRecognizer(longPressGestureOnGameboard)
     }
@@ -55,7 +59,6 @@ class ViewController: UIViewController {
             case .changed:
                 if targetView is UIGameBoardSlot && currentGameBoardSlot == nil {
                     currentGameBoardSlot = targetView as? UIGameBoardSlot
-                    currentGameBoardSlot?.setTitle(String(describing: currentGameBoardSlot!.tag), for: .normal)
                     currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
                 }
                 if currentGameBoardSlot != nil && !currentGameBoardSlot!.isEqual(targetView) {
@@ -73,48 +76,9 @@ class ViewController: UIViewController {
             }
     }
     
-    
-    // MARK: - Helpers
-    @objc
-    func handleLongPressOnPiece(_ gesture: UILongPressGestureRecognizer) {
-        switch gesture.view {
-        case let piece as GamePieceView:
-            switch gesture.state {
-            case .began:
-                grabGamePiece(piece, withGesture: gesture)
-            case .changed:
-                moveGamePiece(piece, withGesture: gesture)
-            case .ended, .cancelled:
-                dropGamePiece(piece, withGesture: gesture)
-            default:
-                print("gesture state not implemented")
-            }
-        default:
-            break
-        }
+    func setSlotColor(slot: UIGameBoardSlot, color: UIColor) {
+        gameBoardView.setColor(for: slot, with: color)
+        let position = gameBoardView.getPlayPosition(for: slot)
     }
     
-    func grabGamePiece(_ piece: UIView, withGesture gesture: UIGestureRecognizer) {
-        piece.center = view.convert(piece.center, from: piece.superview)
-        view.addSubview(piece)
-        
-        UIView.animate(withDuration: 0.2) {
-            piece.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            piece.alpha = 0.8
-            self.moveGamePiece(piece, withGesture: gesture)
-        }
-    }
-    
-    func moveGamePiece(_ piece: UIView, withGesture gesture: UIGestureRecognizer) {
-        piece.center = gesture.location(in: view)
-    }
-    
-    func dropGamePiece(_ piece: UIView, withGesture gesture: UIGestureRecognizer) {
-        UIView.animate(withDuration: 0.2) {
-            piece.transform = CGAffineTransform.identity
-            piece.alpha = 1.0
-        }
-        
-        piece.center = view.convert(piece.center, to: piece.superview)
-    }
 }
