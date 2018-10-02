@@ -101,8 +101,6 @@ class UIGameBoardView: UIView {
                 columnStack.addArrangedSubview(slot)
                 slot.tag = r
                 slot.backgroundColor = .gray
-                slot.setTitle(String(r), for: .normal)
-                
             }
         }
     }

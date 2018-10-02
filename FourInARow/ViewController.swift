@@ -51,24 +51,21 @@ class ViewController: UIViewController {
             switch gesture.state {
             case .began:
                 currentGameBoardSlot = targetView as? UIGameBoardSlot
-//                currentGameBoardSlot?.backgroundColor = player1Color
                 currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
             case .changed:
                 if targetView is UIGameBoardSlot && currentGameBoardSlot == nil {
                     currentGameBoardSlot = targetView as? UIGameBoardSlot
-//                    currentGameBoardSlot?.backgroundColor = player1Color
+                    currentGameBoardSlot?.setTitle(String(describing: currentGameBoardSlot!.tag), for: .normal)
                     currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
                 }
                 if currentGameBoardSlot != nil && !currentGameBoardSlot!.isEqual(targetView) {
-//                    currentGameBoardSlot?.backgroundColor = normalColor
                     currentGameBoardSlot?.superview?.superview?.backgroundColor = .clear
                     currentGameBoardSlot = nil
                 }
             case .ended, .cancelled:
                 if let rowTag = currentGameBoardSlot?.tag, let colTag = currentGameBoardSlot?.superview!.tag {
-                    print("end tag: \(rowTag), \(colTag)")
+                    print("end: c:\(colTag), r:\(rowTag)")
                 }
-//                currentGameBoardSlot?.backgroundColor = normalColor
                 currentGameBoardSlot?.superview?.superview?.backgroundColor = .clear
                 currentGameBoardSlot = nil
             default:
@@ -119,9 +116,5 @@ class ViewController: UIViewController {
         }
         
         piece.center = view.convert(piece.center, to: piece.superview)
-    }
-    
-    func grabColumn(_ column: UIView, with gesture: UIGestureRecognizer) {
-        
     }
 }
