@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum Player: String {
+    case none, one, two
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var gameBoardView: UIGameBoardView!
@@ -15,11 +19,16 @@ class ViewController: UIViewController {
     
     // MARK:- Properties
     
-    weak var currentGameBoardSlot: UIGameBoardSlot?
+    weak var currentGameBoardColumn: UIGameBoardColumn?
     
-    let normalColor = UIColor.gray
-    let player1Color = UIColor.red
-    let player2Color = UIColor.yellow
+    let playerColor: [Player: UIColor] = [
+        .none: .gray,
+        .one: .red,
+        .two: .yellow
+    ]
+//    let normalColor = UIColor.gray
+//    let player1Color = UIColor.red
+//    let player2Color = UIColor.yellow
 
     
     // MARK:- View Life Cycle
@@ -40,7 +49,7 @@ class ViewController: UIViewController {
             guard button is UIGameBoardSlot else {
                 continue
             }
-            button.backgroundColor = normalColor
+            button.backgroundColor = playerColor[.none]
         }
     }
 
@@ -52,33 +61,49 @@ class ViewController: UIViewController {
         let touchPoint = gesture.location(in: view)
         let targetView = view.hitTest(touchPoint, with: nil)
         
+        if let targetColumn = (targetView?.superview?.superview as? UIGameBoardColumn) {
+
             switch gesture.state {
             case .began:
-                currentGameBoardSlot = targetView as? UIGameBoardSlot
-                currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
+                currentGameBoardColumn = targetColumn
+                currentGameBoardColumn?.backgroundColor = .purple
             case .changed:
-                if targetView is UIGameBoardSlot && currentGameBoardSlot == nil {
-                    currentGameBoardSlot = targetView as? UIGameBoardSlot
-                    currentGameBoardSlot?.superview?.superview?.backgroundColor = .purple
+                if currentGameBoardColumn == nil {
+                    currentGameBoardColumn = targetColumn
+                    currentGameBoardColumn?.backgroundColor = .purple
                 }
-                if currentGameBoardSlot != nil && !currentGameBoardSlot!.isEqual(targetView) {
-                    currentGameBoardSlot?.superview?.superview?.backgroundColor = .clear
-                    currentGameBoardSlot = nil
+                if currentGameBoardColumn != nil && !currentGameBoardColumn!.isEqual(targetColumn) {
+                    currentGameBoardColumn?.backgroundColor = .clear
+                    
+                    currentGameBoardColumn = nil
                 }
             case .ended, .cancelled:
-                if let rowTag = currentGameBoardSlot?.tag, let colTag = currentGameBoardSlot?.superview!.tag {
-                    print("end: c:\(colTag), r:\(rowTag)")
+                if let targetView = targetView as? UIGameBoardSlot {
+                    printSlot(targetView)
                 }
-                currentGameBoardSlot?.superview?.superview?.backgroundColor = .clear
-                currentGameBoardSlot = nil
+                currentGameBoardColumn?.backgroundColor = .clear
+
+                currentGameBoardColumn = nil
             default:
                 print("gesture state not implemented")
             }
+        }
+    }
+    
+    func playPiece(in column: Int, for player: Player) {
+        
     }
     
     func setSlotColor(slot: UIGameBoardSlot, color: UIColor) {
-        gameBoardView.setColor(for: slot, with: color)
+        gameBoardView.setSlotPieceColor(for: slot, with: color)
         let position = gameBoardView.getPlayPosition(for: slot)
     }
     
+    private func printSlot(_ slot: UIGameBoardSlot) {
+        let rowTag = slot.tag
+        let colTag = slot.superview!.tag
+        
+        print("end: c:\(colTag), r:\(rowTag)")
+
+    }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E3173B4213AE46C00A453DC /* UIGameBoardSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3173B3213AE46C00A453DC /* UIGameBoardSlot.swift */; };
 		3E36BF3D212E7B4E005FB15D /* UIGameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36BF3C212E7B4E005FB15D /* UIGameBoardView.swift */; };
+		3E505F5B2164250100FB78B8 /* UIGameBoardColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E505F5A2164250100FB78B8 /* UIGameBoardColumn.swift */; };
 		3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F4D2124C85B00A40939 /* AppDelegate.swift */; };
 		3E702F502124C85B00A40939 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F4F2124C85B00A40939 /* ViewController.swift */; };
 		3E702F532124C85B00A40939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E702F512124C85B00A40939 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		3E3173B3213AE46C00A453DC /* UIGameBoardSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGameBoardSlot.swift; sourceTree = "<group>"; };
 		3E36BF3C212E7B4E005FB15D /* UIGameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGameBoardView.swift; sourceTree = "<group>"; };
+		3E505F5A2164250100FB78B8 /* UIGameBoardColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGameBoardColumn.swift; sourceTree = "<group>"; };
 		3E702F4A2124C85B00A40939 /* FourInARow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInARow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E702F4D2124C85B00A40939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E702F4F2124C85B00A40939 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				3E702F4D2124C85B00A40939 /* AppDelegate.swift */,
 				3E702F4F2124C85B00A40939 /* ViewController.swift */,
 				3E36BF3C212E7B4E005FB15D /* UIGameBoardView.swift */,
+				3E505F5A2164250100FB78B8 /* UIGameBoardColumn.swift */,
 				3E3173B3213AE46C00A453DC /* UIGameBoardSlot.swift */,
 				3EF70E87213AD85C0091AAF1 /* FourInARowGame.swift */,
 				3EF70E8B213AD8B70091AAF1 /* FourInARowDirection.swift */,
@@ -240,6 +243,7 @@
 				3E97CED4215224E800FF898B /* TouchIndicatorGestureRecognizer.swift in Sources */,
 				3ED076772160AFA900014388 /* UIColor+Extensions.swift in Sources */,
 				3E3173B4213AE46C00A453DC /* UIGameBoardSlot.swift in Sources */,
+				3E505F5B2164250100FB78B8 /* UIGameBoardColumn.swift in Sources */,
 				3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */,
 				3E36BF3D212E7B4E005FB15D /* UIGameBoardView.swift in Sources */,
 				3EF70E8C213AD8B70091AAF1 /* FourInARowDirection.swift in Sources */,

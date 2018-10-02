@@ -15,11 +15,8 @@ class UIGameBoardView: UIView {
     var spacing: CGFloat = 2 {
         didSet {
             horizontalStack.spacing = spacing
-            for view in horizontalStack.arrangedSubviews {
-                if let col = view.subviews[0] as? UIStackView {
-                    col.spacing = spacing
-                }
-                
+            for view in horizontalStack.arrangedSubviews as! [UIGameBoardColumn] {
+                view.stackView.spacing = spacing
             }
             updateView()
         }
@@ -93,7 +90,7 @@ class UIGameBoardView: UIView {
         horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         
         for c in 0 ..< columns {
-            let columnView = UIView()
+            let columnView = UIGameBoardColumn()
             horizontalStack.addArrangedSubview(columnView)
             columnView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -121,7 +118,26 @@ class UIGameBoardView: UIView {
         }
     }
     
-    func getColumn(for slot: UIGameBoardSlot) -> Int {
+    func getGameBoardSlot(for playPosition: PlayPosition) -> UIGameBoardSlot {
+        let r = playPosition.row
+        let c = playPosition.col
+        
+        let column = horizontalStack.arrangedSubviews[c] as! UIGameBoardColumn
+        
+        return column.stackView.arrangedSubviews[r] as! UIGameBoardSlot
+    }
+    
+    func getGameBoardColumn(for slot: UIGameBoardSlot) -> UIGameBoardColumn {
+        
+        return slot.superview?.superview as! UIGameBoardColumn
+    }
+
+    func getGameBoardColumn(_ c: Int) -> UIGameBoardColumn {
+        return horizontalStack.arrangedSubviews[c].subviews[0] as! UIGameBoardColumn
+        
+    }
+
+    func getColumnNumber(for slot: UIGameBoardSlot) -> Int {
         return slot.superview!.tag
     }
     
@@ -132,7 +148,15 @@ class UIGameBoardView: UIView {
         return (r: r, c: c)
     }
     
-    func setColor(for slot: UIGameBoardSlot, with color: UIColor) {
+    func setColumnColor(for column: UIGameBoardColumn, with color: UIColor) {
+        column.backgroundColor = color
+    }
+
+    func setColumnColor(for slot: UIGameBoardSlot, with color: UIColor) {
+        slot.superview?.superview?.backgroundColor = color
+    }
+    
+    func setSlotPieceColor(for slot: UIGameBoardSlot, with color: UIColor) {
         slot.backgroundColor = color
     }
     
