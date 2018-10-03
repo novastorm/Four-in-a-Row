@@ -18,27 +18,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LC8-1Q-u4g" customClass="UIGameBoardView" customModule="FourInARow" customModuleProvider="target">
-                                <rect key="frame" x="16" y="313" width="343" height="294"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="spacing">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rows">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="dgT-UE-1qK">
+                                <rect key="frame" x="16" y="60" width="343" height="547"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNz-7h-dTa">
+                                        <rect key="frame" x="146.5" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="H4l-ku-75x"/>
+                                            <constraint firstAttribute="width" secondItem="ZNz-7h-dTa" secondAttribute="height" multiplier="1:1" id="Yol-1C-fFo"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="resetGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l46-JO-hle"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPh-YW-HZJ" customClass="UIGameBoardSlot" customModule="FourInARow" customModuleProvider="target">
+                                        <rect key="frame" x="121.5" y="118" width="100" height="100"/>
+                                        <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="VPh-YW-HZJ" secondAttribute="height" multiplier="1:1" id="Pp4-Zf-q4t"/>
+                                            <constraint firstAttribute="height" constant="100" id="w4D-pS-kkd"/>
+                                        </constraints>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LC8-1Q-u4g" customClass="UIGameBoardView" customModule="FourInARow" customModuleProvider="target">
+                                        <rect key="frame" x="19.5" y="286" width="304.5" height="261"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rows">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="LC8-1Q-u4g" secondAttribute="trailing" id="Hue-hZ-nV8"/>
+                                    <constraint firstItem="LC8-1Q-u4g" firstAttribute="leading" secondItem="dgT-UE-1qK" secondAttribute="leading" id="foZ-AF-Hap"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="LC8-1Q-u4g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NE1-cG-khv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LC8-1Q-u4g" secondAttribute="bottom" constant="60" id="iaT-Rp-edB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LC8-1Q-u4g" secondAttribute="trailing" constant="16" id="uur-LW-1BJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dgT-UE-1qK" secondAttribute="trailing" constant="16" id="0aq-7n-xMY"/>
+                            <constraint firstItem="dgT-UE-1qK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7ww-t9-Wx9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dgT-UE-1qK" secondAttribute="bottom" constant="60" id="ZX6-90-xJg"/>
+                            <constraint firstItem="dgT-UE-1qK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="a8I-rU-9GV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="currentPlayerButton" destination="VPh-YW-HZJ" id="VVr-8U-7pW"/>
                         <outlet property="gameBoardView" destination="LC8-1Q-u4g" id="mIL-7n-OTz"/>
+                        <outlet property="resetButton" destination="ZNz-7h-dTa" id="NwT-vf-TDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -291,8 +291,13 @@ class GameBoardTests: XCTestCase {
         XCTAssertNil(playPosition, "playPosition should be nil")
     }
     
-    func test_horizontalWin3564() {
+    func test_horizontalWin23564() {
         
+        let _ = gameBoard.playPiece(at: 2, for: .one)
+        targetGameBoard[5][2] = .one
+        
+        XCTAssertTrue(areMatchingGameBoards(gameBoard.board, targetGameBoard))
+
         let _ = gameBoard.playPiece(at: 3, for: .one)
         targetGameBoard[5][3] = .one
         
@@ -484,6 +489,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertNil(playPosition, "playPosition should be nil")
     }
     
+    // TODO: Update for 4+ win
+    // func test_diagonalWinNWSE23465() {
     func test_diagonalWinNWSE3465() {
         
         let _ = gameBoard.playPiece(at: 2, for: .two)
@@ -538,6 +545,14 @@ class GameBoardTests: XCTestCase {
         
         let playPosition = gameBoard.playPiece(at: 2, for: .one)
         XCTAssertNil(playPosition, "playPosition should be nil")
+    }
+    
+    // TODO: add
+    func test_diagonalWinNESW1230() {
+    }
+    func test_diagonalWinNESW1234() {
+    }
+    func test_diagonalWinNESW23465() {
     }
 
     func areMatchingGameBoards(_ lhs: FourInARowGameBoard, _ rhs: FourInARowGameBoard) -> Bool {

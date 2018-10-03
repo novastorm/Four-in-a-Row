@@ -92,6 +92,7 @@ class FourInARowGame {
                 board[r][c] = .none
             }
         }
+        isGameOver = false
     }
     
     func playPiece(at column: Int, for player: Player) -> PlayPosition? {
@@ -158,7 +159,7 @@ class FourInARowGame {
             }
         }
         
-        return count == 4
+        return count >= 4
     }
     
     func isHorizontalWin(_ playPosition: PlayPosition) -> Bool {
@@ -196,7 +197,7 @@ class FourInARowGame {
             }
         }
         
-        return count == 4
+        return count >= 4
     }
     
     func isBackSlashWin(_ playPosition: PlayPosition) -> Bool {
@@ -234,7 +235,7 @@ class FourInARowGame {
             }
         }
         
-        return count == 4
+        return count >= 4
     }
     
     func isForwardSlashWin(_ playPosition: PlayPosition) -> Bool {
@@ -272,6 +273,6 @@ class FourInARowGame {
             }
         }
         
-        return count == 4
+        return count >= 4
     }
 }

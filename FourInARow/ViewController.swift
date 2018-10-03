@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import FontAwesomeSwift
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var currentPlayerButton: UIGameBoardSlot!
     @IBOutlet weak var gameBoardView: UIGameBoardView!
     var fourInARowGame = FourInARowGame()
     
@@ -36,6 +39,8 @@ class ViewController: UIViewController {
         )
         longPressGestureOnGameboard.minimumPressDuration = 0
         gameBoardView.addGestureRecognizer(longPressGestureOnGameboard)
+        
+        resetButton.setFAIcon(icon: .FARefresh, iconSize: 50, forState: .normal)
     }
 
     override func viewDidLayoutSubviews() {
@@ -45,6 +50,14 @@ class ViewController: UIViewController {
             }
             button.backgroundColor = playerColor[.none]
         }
+    }
+
+
+    // MARK: - Actions
+    
+    @IBAction func resetGame(_ sender: Any) {
+        fourInARowGame.reset()
+        gameBoardView.setAllSlotColors(to: playerColor[.none]!)
     }
 
     
@@ -72,12 +85,13 @@ class ViewController: UIViewController {
                     currentGameBoardColumn = nil
                 }
             case .ended, .cancelled:
-                if let targetView = targetView as? UIGameBoardSlot {
-                    let c = currentGameBoardColumn!.stackView.tag
-                    printSlot(targetView)
-                    playPiece(in: c, for: currentPlayer)
-                }
-                currentGameBoardColumn?.backgroundColor = .clear
+//                if let targetView = targetView as? UIGameBoardSlot {
+//                    let c = targetView.stackView.tag
+//                    printSlot(targetView)
+//                    playPiece(in: c, for: currentPlayer)
+//                }
+                playPiece(in: currentGameBoardColumn!.stackView.tag, for: currentPlayer)
+                currentGameBoardColumn!.backgroundColor = .clear
 
                 currentGameBoardColumn = nil
             default:
@@ -87,14 +101,22 @@ class ViewController: UIViewController {
     }
     
     func playPiece(in column: Int, for player: Player) {
-        fourInARowGame.playPiece(at: column, for: player)
+        guard let playPosition = fourInARowGame.playPiece(at: column, for: player) else {
+            print("Cannot play piece in column")
+            return
+        }
+        let slot = gameBoardView.getGameBoardSlot(for: playPosition)
+        slot.backgroundColor = playerColor[player]
         
+        if fourInARowGame.isGameOver {
+            print("player \(player.rawValue) wins")
+        }
     }
     
-    func setSlotColor(slot: UIGameBoardSlot, color: UIColor) {
-        gameBoardView.setSlotPieceColor(for: slot, with: color)
-        let position = gameBoardView.getPlayPosition(for: slot)
-    }
+//    func setSlotColor(slot: UIGameBoardSlot, color: UIColor) {
+//        gameBoardView.setSlotPieceColor(for: slot, with: color)
+//        let position = gameBoardView.getPlayPosition(for: slot)
+//    }
     
     private func printSlot(_ slot: UIGameBoardSlot) {
         let rowTag = slot.tag

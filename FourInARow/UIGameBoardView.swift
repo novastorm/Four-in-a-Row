@@ -160,6 +160,14 @@ class UIGameBoardView: UIView {
         slot.backgroundColor = color
     }
     
+    func setAllSlotColors(to color: UIColor) {
+        for view in horizontalStack.arrangedSubviews as! [UIGameBoardColumn] {
+            for slot in view.stackView.arrangedSubviews as! [UIGameBoardSlot] {
+                slot.backgroundColor = color
+            }
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
     }
