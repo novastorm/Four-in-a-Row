@@ -8,17 +8,14 @@
 
 import UIKit
 
-enum Player: String {
-    case none, one, two
-}
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var gameBoardView: UIGameBoardView!
-    
+    var fourInARowGame = FourInARowGame()
     
     // MARK:- Properties
     
+    var currentPlayer: Player = .one
     weak var currentGameBoardColumn: UIGameBoardColumn?
     
     let playerColor: [Player: UIColor] = [
@@ -26,9 +23,6 @@ class ViewController: UIViewController {
         .one: .red,
         .two: .yellow
     ]
-//    let normalColor = UIColor.gray
-//    let player1Color = UIColor.red
-//    let player2Color = UIColor.yellow
 
     
     // MARK:- View Life Cycle
@@ -70,16 +64,18 @@ class ViewController: UIViewController {
             case .changed:
                 if currentGameBoardColumn == nil {
                     currentGameBoardColumn = targetColumn
-                    currentGameBoardColumn?.backgroundColor = .purple
+                    currentGameBoardColumn!.backgroundColor = .purple
                 }
                 if currentGameBoardColumn != nil && !currentGameBoardColumn!.isEqual(targetColumn) {
-                    currentGameBoardColumn?.backgroundColor = .clear
+                    currentGameBoardColumn!.backgroundColor = .clear
                     
                     currentGameBoardColumn = nil
                 }
             case .ended, .cancelled:
                 if let targetView = targetView as? UIGameBoardSlot {
+                    let c = currentGameBoardColumn!.stackView.tag
                     printSlot(targetView)
+                    playPiece(in: c, for: currentPlayer)
                 }
                 currentGameBoardColumn?.backgroundColor = .clear
 
@@ -91,6 +87,7 @@ class ViewController: UIViewController {
     }
     
     func playPiece(in column: Int, for player: Player) {
+        fourInARowGame.playPiece(at: column, for: player)
         
     }
     

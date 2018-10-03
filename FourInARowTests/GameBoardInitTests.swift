@@ -28,7 +28,7 @@ class GameBoardInitTests: XCTestCase {
         
         let targetGameBoard = Array(
             repeating: Array(
-                repeating: GameBoardSlot.none,
+                repeating: Player.none,
                 count: numCols),
             count: numRows
         )
@@ -44,7 +44,7 @@ class GameBoardInitTests: XCTestCase {
         
         var targetGameBoard = Array(
             repeating: Array(
-                repeating: GameBoardSlot.none,
+                repeating: Player.none,
                 count: numCols),
             count: numRows
         )

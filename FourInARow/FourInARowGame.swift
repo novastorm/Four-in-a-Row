@@ -1,5 +1,5 @@
 //
-//  GameBoard.swift
+//  FourInARowGame.swift
 //  FourInARow
 //
 //  Created by Adland Lee on 9/1/18.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-enum GameBoardSlot: String {
+enum Player: String {
     case none, one, two
 }
 
 typealias PlayPosition = FourInARowVector2D
-typealias FourInARowGameBoard = [[GameBoardSlot]]
+typealias FourInARowGameBoard = [[Player]]
 
-extension Array where Element == [GameBoardSlot] {
+extension Array where Element == [Player] {
     var description:String {
         var result = ""
-        for r in stride(from: 5, through: 0, by: -1) {
-            for c in 0 ... 6 {
+        for r in 0 ..< count {
+            for c in 0 ..<  self[0].count-1 {
                 var chip: String
                 switch self[r][c] {
                 case .one:
@@ -41,14 +41,12 @@ extension Array where Element == [GameBoardSlot] {
  
  Game board coordinates
  
- (rows: Y)
- 5
- 4
- 3
- 2
- 1
- 0
  0 1 2 3 4 5 6 (cols: X)
+ 1
+ 2
+ 3
+ 4
+ 5 (rows: Y)
  
  */
 
@@ -63,7 +61,7 @@ class FourInARowGame {
         
         board = Array(
             repeating: Array(
-                repeating: GameBoardSlot.none,
+                repeating: Player.none,
                 count: numberOfColumns),
             count: numberOfRows)
         isGameOver = false
@@ -75,13 +73,13 @@ class FourInARowGame {
             return nil
         }
         
-        self.board = Array<[GameBoardSlot]>(repeating: [], count: numberOfRows)
+        self.board = Array<[Player]>(repeating: [], count: numberOfRows)
         
         for (r, row) in board.enumerated() {
             guard row.count == numberOfColumns else {
                 return nil
             }
-            self.board[r] = Array(repeating: GameBoardSlot.none, count: numberOfColumns)
+            self.board[r] = Array(repeating: Player.none, count: numberOfColumns)
             for (c, element) in row.enumerated() {
                 self.board[r][c] = element
             }
@@ -96,8 +94,8 @@ class FourInARowGame {
         }
     }
     
-    func playPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
-        guard let playPosition = insertPiece(for: player, at: column) else {
+    func playPiece(at column: Int, for player: Player) -> PlayPosition? {
+        guard let playPosition = insertPiece(at: column, for: player) else {
             return nil
         }
 
@@ -106,12 +104,12 @@ class FourInARowGame {
         return playPosition
     }
     
-    func insertPiece(for player: GameBoardSlot, at column: Int) -> PlayPosition? {
+    func insertPiece(at column: Int, for player: Player) -> PlayPosition? {
         guard canPlay(at: column) else {
             return nil
         }
         
-        for row in 0 ..< numberOfRows {
+        for row in stride(from: numberOfRows-1, through: 0, by: -1) {
             if board[row][column] == .none {
                 board[row][column] = player
                 
@@ -126,7 +124,7 @@ class FourInARowGame {
         if !isGameOver
         && (column >= 0)
         && (column < numberOfColumns)
-        && (board[numberOfRows-1][column] == .none) {
+        && (board[0][column] == .none) {
             return true
         }
         return false
@@ -145,7 +143,7 @@ class FourInARowGame {
         let col = playPosition.col
         let player = board[row][col]
         
-        if row >= 3 {
+        if row < 3 {
             for i in 1 ... 3 {
                 let testPosition = playPosition + (FourInARowDirection.s * i)
                 let r = testPosition.row
@@ -201,7 +199,7 @@ class FourInARowGame {
         return count == 4
     }
     
-    func isForwardSlashWin(_ playPosition: PlayPosition) -> Bool {
+    func isBackSlashWin(_ playPosition: PlayPosition) -> Bool {
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
@@ -209,7 +207,7 @@ class FourInARowGame {
         
         if (col > 0) && (row > 0) {
             for i in 1 ... min(3, col, row) {
-                let testPosition = playPosition + (FourInARowDirection.sw * i)
+                let testPosition = playPosition + (FourInARowDirection.nw * i)
                 let r = testPosition.row
                 let c = testPosition.col
 
@@ -223,7 +221,7 @@ class FourInARowGame {
         }
         if (col < numberOfColumns-1) && (row < numberOfRows-1) {
             for i in 1 ... min(3, numberOfColumns-1 - col, numberOfRows-1 - row) {
-                let testPosition = playPosition + (FourInARowDirection.ne * i)
+                let testPosition = playPosition + (FourInARowDirection.se * i)
                 let r = testPosition.row
                 let c = testPosition.col
 
@@ -239,15 +237,15 @@ class FourInARowGame {
         return count == 4
     }
     
-    func isBackSlashWin(_ playPosition: PlayPosition) -> Bool {
+    func isForwardSlashWin(_ playPosition: PlayPosition) -> Bool {
         var count = 1
         let row = playPosition.row
         let col = playPosition.col
         let player = board[row][col]
         
         if (col > 0) && (row < numberOfRows-1) {
-            for i in 1 ... min(3, col, (numberOfRows-1) - row) {
-                let testPosition = playPosition + (FourInARowDirection.nw * i)
+            for i in 1 ... min(3, col, numberOfRows-1 - row) {
+                let testPosition = playPosition + (FourInARowDirection.sw * i)
                 let r = testPosition.row
                 let c = testPosition.col
 
@@ -260,8 +258,8 @@ class FourInARowGame {
             }
         }
         if (col < numberOfColumns-1) && (row > 0) {
-            for i in 1 ... min(3, (numberOfColumns-1) - col, row) {
-                let testPosition = playPosition + (FourInARowDirection.se * i)
+            for i in 1 ... min(3, numberOfColumns-1 - col, row) {
+                let testPosition = playPosition + (FourInARowDirection.ne * i)
                 let r = testPosition.row
                 let c = testPosition.col
 
