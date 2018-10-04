@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         gameBoardView.addGestureRecognizer(longPressGestureOnGameboard)
         
         resetButton.setFAIcon(icon: .FARefresh, iconSize: 50, forState: .normal)
+        fourInARowGame.delegate = self
     }
 
     override func viewDidLayoutSubviews() {
@@ -52,6 +53,10 @@ class ViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resetGame(self)
+    }
 
     // MARK: - Actions
     
@@ -65,38 +70,47 @@ class ViewController: UIViewController {
     
     @objc
     func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        
+        guard !fourInARowGame.isGameOver else {
+            return
+        }
+        
         let touchPoint = gesture.location(in: view)
         let targetView = view.hitTest(touchPoint, with: nil)
         
-        if let targetColumn = (targetView?.superview?.superview as? UIGameBoardColumn) {
 
-            switch gesture.state {
-            case .began:
+        switch gesture.state {
+        case .began:
+            if let targetColumn = (targetView?.superview?.superview as? UIGameBoardColumn) {
                 currentGameBoardColumn = targetColumn
-                currentGameBoardColumn?.backgroundColor = .purple
-            case .changed:
+            }
+            currentGameBoardColumn?.backgroundColor = .purple
+        case .changed:
+            if let targetColumn = (targetView?.superview?.superview as? UIGameBoardColumn) {
                 if currentGameBoardColumn == nil {
                     currentGameBoardColumn = targetColumn
-                    currentGameBoardColumn!.backgroundColor = .purple
+                    currentGameBoardColumn?.backgroundColor = .purple
                 }
                 if currentGameBoardColumn != nil && !currentGameBoardColumn!.isEqual(targetColumn) {
                     currentGameBoardColumn!.backgroundColor = .clear
-                    
                     currentGameBoardColumn = nil
                 }
-            case .ended, .cancelled:
-//                if let targetView = targetView as? UIGameBoardSlot {
-//                    let c = targetView.stackView.tag
-//                    printSlot(targetView)
-//                    playPiece(in: c, for: currentPlayer)
-//                }
-                playPiece(in: currentGameBoardColumn!.stackView.tag, for: currentPlayer)
-                currentGameBoardColumn!.backgroundColor = .clear
-
-                currentGameBoardColumn = nil
-            default:
-                print("gesture state not implemented")
             }
+        case .failed:
+            print("gesture failed")
+        case .ended:
+            print("gesture ended")
+            if let targetColumn = (targetView?.superview?.superview as? UIGameBoardColumn) {
+                playPiece(in: targetColumn.stackView.tag, for: currentPlayer)
+            }
+            currentGameBoardColumn?.backgroundColor = .clear
+            currentGameBoardColumn = nil
+        case .cancelled:
+            print("gesture cancelled")
+            currentGameBoardColumn?.backgroundColor = .clear
+            currentGameBoardColumn = nil
+        default:
+            print("gesture state not implemented")
         }
     }
     
@@ -124,5 +138,13 @@ class ViewController: UIViewController {
         
         print("end: c:\(colTag), r:\(rowTag)")
 
+    }
+}
+
+extension ViewController: FourInARowGameDelegate {
+
+    func didSetCurrentPlayer(_ player: Player) {
+        currentPlayer = player
+        currentPlayerButton.backgroundColor = playerColor[player]
     }
 }

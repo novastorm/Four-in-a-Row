@@ -56,6 +56,13 @@ class FourInARowGame {
     let numberOfColumns = 7
     var board: FourInARowGameBoard
     var isGameOver: Bool
+    var currentPlayer: Player! {
+        didSet {
+            delegate?.didSetCurrentPlayer(self.currentPlayer)
+        }
+    }
+    
+    var delegate: FourInARowGameDelegate?
     
     init() {
         
@@ -93,6 +100,22 @@ class FourInARowGame {
             }
         }
         isGameOver = false
+        currentPlayer = randomPlayer()
+    }
+    
+    func randomPlayer() -> Player {
+        return random(2) == 0 ? Player.one : Player.two
+    }
+    
+    func togglePlayer() {
+        switch currentPlayer! {
+        case .one:
+            currentPlayer = .two
+        case .two:
+            currentPlayer = .one
+        default:
+            fatalError()
+        }
     }
     
     func playPiece(at column: Int, for player: Player) -> PlayPosition? {
@@ -102,6 +125,10 @@ class FourInARowGame {
 
         isGameOver = isGameOver || isWin(playPosition)
 
+        if !isGameOver {
+            togglePlayer()
+        }
+        
         return playPosition
     }
     
@@ -113,7 +140,7 @@ class FourInARowGame {
         for row in stride(from: numberOfRows-1, through: 0, by: -1) {
             if board[row][column] == .none {
                 board[row][column] = player
-                
+
                 return PlayPosition(row, column)
             }
         }

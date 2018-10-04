@@ -12,6 +12,8 @@
 		3E505F5B2164250100FB78B8 /* UIGameBoardColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E505F5A2164250100FB78B8 /* UIGameBoardColumn.swift */; };
 		3E505F602165631000FB78B8 /* FontAwesomeSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E505F5F2165631000FB78B8 /* FontAwesomeSwift.framework */; };
 		3E505F612165631100FB78B8 /* FontAwesomeSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E505F5F2165631000FB78B8 /* FontAwesomeSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E505F64216567FD00FB78B8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E505F63216567FD00FB78B8 /* Utilities.swift */; };
+		3E505F662165692200FB78B8 /* FourInARowGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E505F652165692200FB78B8 /* FourInARowGameDelegate.swift */; };
 		3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F4D2124C85B00A40939 /* AppDelegate.swift */; };
 		3E702F502124C85B00A40939 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E702F4F2124C85B00A40939 /* ViewController.swift */; };
 		3E702F532124C85B00A40939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E702F512124C85B00A40939 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 		3E505F5A2164250100FB78B8 /* UIGameBoardColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGameBoardColumn.swift; sourceTree = "<group>"; };
 		3E505F5C21655FF500FB78B8 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cartfile; sourceTree = "<group>"; };
 		3E505F5F2165631000FB78B8 /* FontAwesomeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesomeSwift.framework; path = Carthage/Build/iOS/FontAwesomeSwift.framework; sourceTree = "<group>"; };
+		3E505F63216567FD00FB78B8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		3E505F652165692200FB78B8 /* FourInARowGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInARowGameDelegate.swift; sourceTree = "<group>"; };
 		3E702F4A2124C85B00A40939 /* FourInARow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInARow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E702F4D2124C85B00A40939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E702F4F2124C85B00A40939 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				3ED076762160AFA900014388 /* UIColor+Extensions.swift */,
 				3E86A25C213C4DB5009E9C14 /* UIView+Extensions.swift */,
 				3E90A9BD215F72570012AC28 /* TypeNameExtensions.swift */,
+				3E505F63216567FD00FB78B8 /* Utilities.swift */,
+				3E505F652165692200FB78B8 /* FourInARowGameDelegate.swift */,
 			);
 			path = FourInARow;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 				3EF70E8A213AD8940091AAF1 /* FourInARowVector2D.swift in Sources */,
 				3E90A9BE215F72570012AC28 /* TypeNameExtensions.swift in Sources */,
 				3E86A25D213C4DB5009E9C14 /* UIView+Extensions.swift in Sources */,
+				3E505F64216567FD00FB78B8 /* Utilities.swift in Sources */,
 				3EF70E88213AD85C0091AAF1 /* FourInARowGame.swift in Sources */,
 				3E97CED4215224E800FF898B /* TouchIndicatorGestureRecognizer.swift in Sources */,
 				3ED076772160AFA900014388 /* UIColor+Extensions.swift in Sources */,
@@ -289,6 +296,7 @@
 				3E505F5B2164250100FB78B8 /* UIGameBoardColumn.swift in Sources */,
 				3E702F4E2124C85B00A40939 /* AppDelegate.swift in Sources */,
 				3E36BF3D212E7B4E005FB15D /* UIGameBoardView.swift in Sources */,
+				3E505F662165692200FB78B8 /* FourInARowGameDelegate.swift in Sources */,
 				3EF70E8C213AD8B70091AAF1 /* FourInARowDirection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
